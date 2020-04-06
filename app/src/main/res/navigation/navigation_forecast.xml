@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_forecast"
-    app:startDestination="@id/forcastLandingFragment">
+    app:startDestination="@id/selectCitiesFragment">
 
     <fragment
         android:id="@+id/forcastByLocationFragment"
@@ -37,6 +37,6 @@
     <fragment
         android:id="@+id/selectCitiesFragment"
         android:name="com.maqsood007.weatherforecast.ui.cities.SelectCitiesFragment"
-        android:label="fragment_select_cities"
+        android:label="@string/select_cities"
         tools:layout="@layout/fragment_select_cities" />
 </navigation>

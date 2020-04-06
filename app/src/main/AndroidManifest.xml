@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.maqsood007.weatherforecast">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WeatherApp"
         android:allowBackup="true"
@@ -12,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,6 +7,7 @@ package com.test.nyt_most_viewed.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.maqsood007.weatherforecast.ui.cities.CitiesViewModel
 import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -44,6 +45,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(WeatherForecastViewModel::class)
     internal abstract fun mostViewedArticlesViewModel(viewModel: WeatherForecastViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CitiesViewModel::class)
+    internal abstract fun CitiesViewModel(viewModel: CitiesViewModel): ViewModel
 
 
 }

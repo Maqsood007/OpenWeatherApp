@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchEditText">
+        <attr name="text" format="string"/>
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="image" format="integer"/>
+        <attr name="imageSize" format="dimension" />
+    </declare-styleable>
+</resources>

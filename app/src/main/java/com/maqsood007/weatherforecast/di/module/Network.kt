@@ -8,6 +8,7 @@ package com.test.nyt_most_viewed.di.module
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.BuildConfig
+import com.maqsood007.weatherforecast.WeatherApp
 import com.test.nyt_most_viewed.di.ScheduleProvider
 import dagger.Module
 import dagger.Provides
@@ -41,7 +42,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun okHttpClient(nytApp: WeatherApi): OkHttpClient {
+    fun okHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(10, TimeUnit.SECONDS)
