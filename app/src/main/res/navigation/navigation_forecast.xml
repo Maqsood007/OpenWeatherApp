@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_forecast"
+    app:startDestination="@id/forcastLandingFragment">
+
+    <fragment
+        android:id="@+id/forcastByLocationFragment"
+        android:name="com.maqsood007.weatherforecast.ui.forcasts.current_location.ForcastByLocationFragment"
+        android:label="fragment_forcast_by_location"
+        tools:layout="@layout/fragment_forcast_by_location" />
+    <fragment
+        android:id="@+id/forecastByCitiesFragment"
+        android:name="com.maqsood007.weatherforecast.ui.forcasts.cities.ForecastByCitiesFragment"
+        android:label="fragment_forecast_by_cities"
+        tools:layout="@layout/fragment_forecast_by_cities" >
+        <action
+            android:id="@+id/action_forecastByCitiesFragment_to_selectCitiesFragment"
+            app:destination="@id/selectCitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forcastLandingFragment"
+        android:name="com.maqsood007.weatherforecast.ui.landing.ForecastLandingFragment"
+        android:label="fragment_forcast_landing"
+        tools:layout="@layout/fragment_forcast_landing" >
+        <action
+            android:id="@+id/action_forcastLandingFragment_to_forcastByLocationFragment"
+            app:destination="@id/forcastByLocationFragment" />
+        <action
+            android:id="@+id/action_forcastLandingFragment_to_forecastByCitiesFragment"
+            app:destination="@id/forecastByCitiesFragment" />
+        <action
+            android:id="@+id/action_forcastLandingFragment_to_selectCitiesFragment"
+            app:destination="@id/selectCitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectCitiesFragment"
+        android:name="com.maqsood007.weatherforecast.ui.cities.SelectCitiesFragment"
+        android:label="fragment_select_cities"
+        tools:layout="@layout/fragment_select_cities" />
+</navigation>

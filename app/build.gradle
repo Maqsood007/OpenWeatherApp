@@ -44,11 +44,15 @@ android {
 
         production {
             dimension "default"
+            buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/\""
+            buildConfigField "String", "APP_ID", "\"d0e3f706601111ea15dd11b4ad621f49\""
         }
 
         stagging {
             dimension "default"
             applicationId "com.maqsood007.stagging.weatherforecast"
+            buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/\""
+            buildConfigField "String", "APP_ID", "\"d0e3f706601111ea15dd11b4ad621f49\""
         }
 
     }
@@ -103,6 +107,9 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.16'
     kapt 'com.google.dagger:dagger-android-processor:2.16'
 
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
     /*
     Network libraries
     */
@@ -148,4 +155,3 @@ dependencies {
 
 
 }
-
