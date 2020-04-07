@@ -52,7 +52,7 @@ public class LocationForecastListAdapter :
         }
     }
 
-    fun updateCities(forecastData: LinkedHashMap<String, MutableList<ListItem>>) {
+    fun updateForecastData(forecastData: LinkedHashMap<String, MutableList<ListItem>>) {
         this.locationForeCastMappedData = forecastData
         prepareDateForViewHolder()
         notifyDataSetChanged()

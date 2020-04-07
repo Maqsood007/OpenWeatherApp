@@ -6,7 +6,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
+import com.maqsood007.weatherforecast.utils.CommonUtility
+import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
+import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
 import com.maqsood007.weatherforecast.utils.DateTimeUtility
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
@@ -41,23 +45,20 @@ class LocationForecastListItemViewModel @Inject constructor() : ViewModel() {
         dayName.value =
             DateTimeUtility.getDayName(forecastItem?.dtTxt!!, DateTimeUtility.DATE_FORMATTER)
 
-        winds.value = forecastItem.wind?.speed.toString() + "km/h"
-
         description.value = forecastItem.weather?.get(0)?.description
 
-        temprature.value = forecastItem.main?.temp.toString()
+        winds.value = forecastItem.wind?.toWindSpeed()
+        temprature.value = forecastItem.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
 
 
         time.value =
             DateTimeUtility.getTime(forecastItem.dtTxt, DateTimeUtility.DATE_FORMATTER)
 
-        tempRange.value =
-            "".plus(forecastItem.main?.tempMin).plus("     ")
-                .plus(forecastItem.main?.tempMax.toString())
+        tempRange.value = "${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE) }     ${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE) }"
 
 
         imgCloud.value =
-            "https://openweathermap.org/img/w/${forecastItem.weather?.get(0)?.icon}.png"
+            "${BuildConfig.BASE_URL_ICON}${forecastItem.weather?.get(0)?.icon}.png"
 
     }
 

@@ -46,6 +46,7 @@ android {
             dimension "default"
             buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/\""
             buildConfigField "String", "APP_ID", "\"d0e3f706601111ea15dd11b4ad621f49\""
+            buildConfigField "String", "BASE_URL_ICON", "\"https://openweathermap.org/img/w/\""
         }
 
         stagging {
@@ -53,6 +54,7 @@ android {
             applicationId "com.maqsood007.stagging.weatherforecast"
             buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/\""
             buildConfigField "String", "APP_ID", "\"d0e3f706601111ea15dd11b4ad621f49\""
+            buildConfigField "String", "BASE_URL_ICON", "\"https://openweathermap.org/img/w/\""
         }
 
     }

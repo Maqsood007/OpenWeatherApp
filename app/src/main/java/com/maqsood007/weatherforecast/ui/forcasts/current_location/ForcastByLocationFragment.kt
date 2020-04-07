@@ -18,8 +18,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maqsood007.weatherforecast.R
+import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
 import com.maqsood007.weatherforecast.databinding.FragmentForcastByLocationBinding
 import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
+import com.maqsood007.weatherforecast.utils.CommonUtility
+import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
+import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
+import com.maqsood007.weatherforecast.utils.DateTimeUtility
 import com.test.nyt_most_viewed.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
@@ -34,6 +39,12 @@ class ForcastByLocationFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     lateinit var weatherForecastViewModel: WeatherForecastViewModel
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,6 +90,31 @@ class ForcastByLocationFragment : BaseFragment() {
                 }
 
             })
+
+
+        weatherForecastViewModel.locationForecastData.observe(
+            viewLifecycleOwner,
+            Observer {
+
+                val todayForecast = it?.list?.get(0)
+
+                todayForecast.let {
+
+                    val temprature = it?.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
+                    val winds = it?.wind?.toWindSpeed()
+                    val description = it?.weather?.get(0)?.description
+                    val tempratureRange = "".plus(it?.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE)).plus("/")
+                        .plus(it?.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE))
+
+                    fragmentForcastByLocationBinding.tvTemprature.text = temprature
+                    fragmentForcastByLocationBinding.tvWinds.text = winds
+                    fragmentForcastByLocationBinding.tvDescription.text = description
+                    fragmentForcastByLocationBinding.tvTemRange.text = tempratureRange
+
+                }
+
+            })
+
 
         weatherForecastViewModel.errorLayoutVisibility.observe(
             viewLifecycleOwner,

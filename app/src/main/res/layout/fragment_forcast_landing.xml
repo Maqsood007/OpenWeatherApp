@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg"
+        android:background="@drawable/weather_bg"
         tools:context=".ui.landing.ForecastLandingFragment">
 
         <androidx.constraintlayout.widget.Guideline
@@ -43,7 +43,7 @@
             tools:text="@string/txt_temprature" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_temprature"
@@ -54,7 +54,7 @@
             tools:text="TextView" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvWinds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_temprature"
@@ -65,17 +65,17 @@
             tools:text="TextView" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvTemRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/txt_temprature"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintBottom_toTopOf="@+id/tvWinds"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
             tools:text="TextView" />
 
         <TextView

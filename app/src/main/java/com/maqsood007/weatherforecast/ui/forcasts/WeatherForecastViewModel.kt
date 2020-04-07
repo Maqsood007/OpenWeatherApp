@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maqsood007.weatherforecast.data.WeatherApi
-import com.maqsood007.weatherforecast.data.response.cities.City
 import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
 import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
@@ -28,7 +27,6 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
 
-    val citiesForecastData = MutableLiveData<CitiesForcastResponse>()
     val locationForecastData = MutableLiveData<CurrentLocationForcastResponse>()
     val locationForecastMappedData = MutableLiveData<LinkedHashMap<String, MutableList<ListItem>>>()
 
@@ -68,19 +66,6 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
     }
 
 
-    public fun getForecastByCities(cities: String) {
-
-        subscription =
-            weatherApi.getForecastByCities(cities = cities)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { onForecastFetchStart() }
-                .doOnTerminate { onForecastFetchEnd() }
-                .subscribe(this::handleCitiesForecastResponse, this::handleError)
-
-    }
-
-
     private fun onForecastFetchStart() {
 
         loadingVisibility.value = View.VISIBLE
@@ -98,10 +83,6 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
     private fun handleLocationForecastResponse(locationForecastResponse: CurrentLocationForcastResponse?) {
         locationForecastData.value = locationForecastResponse
         mapForecastDate()
-    }
-
-    private fun handleCitiesForecastResponse(citiesForecastResponse: CitiesForcastResponse) {
-        citiesForecastData.value = citiesForecastResponse
     }
 
 
@@ -130,7 +111,7 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
 
         }
 
-        forecastAdapter.updateCities(forecastData = locationForecastMappedData.value!!)
+        forecastAdapter.updateForecastData(forecastData = locationForecastMappedData.value!!)
 
         Log.d("MAPPED_DATA", locationForecastMappedData.toString())
 
@@ -140,9 +121,6 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
         errorMessage.value = error.message
 
         if (locationForecastData.value == null)
-            errorLayoutVisibility.value = View.VISIBLE
-
-        if (citiesForecastData.value == null)
             errorLayoutVisibility.value = View.VISIBLE
 
     }

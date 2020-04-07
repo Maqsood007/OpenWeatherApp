@@ -1,0 +1,86 @@
+package com.maqsood007.weatherforecast.ui.forcasts.cities
+
+import android.location.Location
+import android.util.Log
+import android.view.View
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.maqsood007.weatherforecast.data.WeatherApi
+import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
+import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
+import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
+import com.maqsood007.weatherforecast.ui.forcasts.cities.adapter.CitiesForecastListAdapter
+import com.maqsood007.weatherforecast.ui.forcasts.current_location.adapter.LocationForecastListAdapter
+import com.maqsood007.weatherforecast.utils.DateTimeUtility
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
+
+/**
+ * Created by Muhammad Maqsood on 06/04/2020.
+ */
+class CitiesForecastViewModel @Inject constructor(private val weatherApi: WeatherApi) :
+    ViewModel() {
+
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorLayoutVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage: MutableLiveData<String> = MutableLiveData()
+
+
+    val citiesForecastData = MutableLiveData<CitiesForcastResponse>()
+
+    val forecastAdapter = CitiesForecastListAdapter()
+
+    var subscription: Disposable? = null
+
+    override fun onCleared() {
+        super.onCleared()
+        subscription?.dispose()
+    }
+
+    val retryListener = View.OnClickListener {
+        getForecastByCities("")
+    }
+
+
+    fun getForecastByCities(cities: String) {
+
+        subscription =
+            weatherApi.getForecastByCities(cities = "292223,2C292672,2C3130752")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { onForecastFetchStart() }
+                .doOnTerminate { onForecastFetchEnd() }
+                .subscribe(this::handleCitiesForecastResponse, this::handleError)
+
+    }
+
+
+    private fun onForecastFetchStart() {
+
+        loadingVisibility.value = View.VISIBLE
+
+        // Remove error on loading start
+        errorMessage.value = null
+        errorLayoutVisibility.value = View.GONE
+    }
+
+    private fun onForecastFetchEnd() {
+        loadingVisibility.value = View.GONE
+    }
+
+    private fun handleCitiesForecastResponse(citiesForecastResponse: CitiesForcastResponse) {
+        citiesForecastData.value = citiesForecastResponse
+        forecastAdapter.updateForecastData(citiesForecastResponse.list!!)
+        forecastAdapter.notifyDataSetChanged()
+    }
+
+    private fun handleError(error: Throwable) {
+        errorMessage.value = error.message
+
+        if (citiesForecastData.value == null)
+            errorLayoutVisibility.value = View.VISIBLE
+
+    }
+}

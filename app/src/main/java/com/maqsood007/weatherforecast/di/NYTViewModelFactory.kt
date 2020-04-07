@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.maqsood007.weatherforecast.ui.cities.CitiesViewModel
 import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
+import com.maqsood007.weatherforecast.ui.forcasts.cities.CitiesForecastViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -44,12 +45,17 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(WeatherForecastViewModel::class)
-    internal abstract fun mostViewedArticlesViewModel(viewModel: WeatherForecastViewModel): ViewModel
+    internal abstract fun provideWeatherForecastViewModel(viewModel: WeatherForecastViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(CitiesViewModel::class)
-    internal abstract fun CitiesViewModel(viewModel: CitiesViewModel): ViewModel
+    internal abstract fun provideitiesViewModel(viewModel: CitiesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CitiesForecastViewModel::class)
+    internal abstract fun provideCitiesForecastViewModel(viewModel: CitiesForecastViewModel): ViewModel
 
 
 }

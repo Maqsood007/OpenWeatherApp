@@ -9,11 +9,8 @@
 
         <variable
             name="locationForecastListItemViewModel"
-            type="com.maqsood007.weatherforecast.ui.forcasts.current_location.LocationForecastListItemViewModel" />
+            type="com.maqsood007.weatherforecast.ui.forcasts.cities.CityForecastListItemViewModel" />
 
-        <variable
-            name="dayDataAdapter"
-            type="com.maqsood007.weatherforecast.ui.forcasts.current_location.adapter.LocationForecastListDayAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +25,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:minLines="1"
-            android:text="@{locationForecastListItemViewModel.dayName}"
+            android:text="@{locationForecastListItemViewModel.cityName}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -124,16 +121,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWinds" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dayRecycleView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:visibility="@{locationForecastListItemViewModel.childVisibility, default = gone}"
-            app:adapter="@{dayDataAdapter}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

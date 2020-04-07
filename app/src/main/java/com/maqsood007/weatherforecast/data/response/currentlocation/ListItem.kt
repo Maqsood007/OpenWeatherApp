@@ -12,5 +12,6 @@ data class ListItem(
     val sys: Sys? = null,
     val wind: Wind? = null,
     val rain: Rain? = null,
+    val name: String? = null,
     var isExpanded: Boolean = false
 )
