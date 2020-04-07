@@ -1,6 +1,6 @@
 package com.test.nyt_most_viewed.di.module
 
-import com.maqsood007.weatherforecast.ui.MainActivity
+import com.maqsood007.weatherforecast.utils.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

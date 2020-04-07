@@ -2,6 +2,7 @@ package com.maqsood007.weatherforecast.utils
 
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.maqsood007.weatherforecast.R

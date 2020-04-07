@@ -4,24 +4,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="locationForecastListItemViewModel"
+            type="com.maqsood007.weatherforecast.ui.forcasts.current_location.LocationForecastListItemViewModel" />
+
+        <variable
+            name="dayDataAdapter"
+            type="com.maqsood007.weatherforecast.ui.forcasts.current_location.adapter.LocationForecastListDayAdapter" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@android:color/background_dark"
-        android:layout_height="match_parent">
+        android:background="#000000"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:minLines="2"
+            android:minLines="1"
+            android:text="@{locationForecastListItemViewModel.dayName}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.501"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/day_monday" />
 
 
@@ -30,40 +44,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:drawableStart="@drawable/ic_winds"
-            android:textColor="@color/white"
             android:gravity="center_vertical"
+            android:text="@{locationForecastListItemViewModel.winds}"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvIconTemp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/txt_winds" />
 
         <ImageView
             android:id="@+id/tvIconTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_winds"
+            android:layout_marginTop="16dp"
+            app:imageUrl="@{locationForecastListItemViewModel.imgCloud}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvForecastInfo"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvWinds"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvForecastInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:minLines="2"
+            android:minLines="1"
+            android:text="@{locationForecastListItemViewModel.description}"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvTemprature"
             app:layout_constraintStart_toEndOf="@+id/tvIconTemp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.501"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/txt_temp_info" />
 
 
@@ -71,13 +92,16 @@
             android:id="@+id/tvTemprature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:text="@{locationForecastListItemViewModel.temprature}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvForecastInfo"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/txt_temprature" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -91,6 +115,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWinds" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dayRecycleView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="@{locationForecastListItemViewModel.childVisibility, default = gone}"
+            app:adapter="@{dayDataAdapter}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

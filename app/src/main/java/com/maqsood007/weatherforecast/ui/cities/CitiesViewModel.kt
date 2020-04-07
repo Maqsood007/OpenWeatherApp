@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maqsood007.weatherforecast.WeatherApp
 import com.maqsood007.weatherforecast.data.response.cities.City
+import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
+import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
 import com.maqsood007.weatherforecast.ui.cities.adapter.CitiesListAdapter
 import com.maqsood007.weatherforecast.utils.CitiesUtility
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,7 +23,6 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
     val cityListAdapter = CitiesListAdapter()
 
     val citiesList = MutableLiveData<List<City?>>()
-
     var citiesListToShow = listOf<City?>()
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()

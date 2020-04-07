@@ -7,7 +7,7 @@
     <string name="txt_winds">22km/h</string>
     <string name="txt_temp_info">Clouds</string>
     <string name="txt_temprature">28</string>
-    <string name="txt_temp_range">"28     30    "</string>
+    <string name="txt_temp_range">"28     30"</string>
     <string name="go_to_details">Go to Details</string>
 
     <string name="something_went_wrong">Something went wrong. Please try again.</string>

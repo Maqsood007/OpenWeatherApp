@@ -8,7 +8,7 @@
         
         <variable
             name="landingViewModel"
-            type="com.maqsood007.weatherforecast.ui.landing.LandingViewModel" />
+            type="com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel" />
         
     </data>
     

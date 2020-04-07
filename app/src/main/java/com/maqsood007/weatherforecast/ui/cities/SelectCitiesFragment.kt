@@ -68,13 +68,13 @@ class SelectCitiesFragment : BaseFragment() {
         citiesViewModel =
             ViewModelProviders.of(this, viewModelFactory)[CitiesViewModel::class.java]
 
-        citiesViewModel.errorMessage.observe(this, Observer { error ->
+        citiesViewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
             if (error != null) showError(error) else hideError()
         })
 
         fragmentSelectCitiesBinding.lifecycleOwner = this
 
-        citiesViewModel.loadingVisibility.observe(this, Observer { visibility ->
+        citiesViewModel.loadingVisibility.observe(viewLifecycleOwner, Observer { visibility ->
 
             if (visibility == View.VISIBLE) {
                 // show the progress loader
@@ -87,7 +87,7 @@ class SelectCitiesFragment : BaseFragment() {
 
         })
 
-        citiesViewModel.errorLayoutVisibility.observe(this, Observer { visibility ->
+        citiesViewModel.errorLayoutVisibility.observe(viewLifecycleOwner, Observer { visibility ->
 
             fragmentSelectCitiesBinding.errorLayout.visibility = visibility
         })
