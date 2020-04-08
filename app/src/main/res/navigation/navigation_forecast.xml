@@ -20,11 +20,6 @@
         android:label="@string/forecast_by_cities"
         tools:layout="@layout/fragment_forecast_by_cities" />
     <fragment
-        android:id="@+id/forcastLandingFragment"
-        android:name="com.maqsood007.weatherforecast.ui.landing.ForecastLandingFragment"
-        android:label="fragment_forcast_landing"
-        tools:layout="@layout/fragment_forcast_landing" />
-    <fragment
         android:id="@+id/selectCitiesFragment"
         android:name="com.maqsood007.weatherforecast.ui.cities.SelectCitiesFragment"
         android:label="@string/select_cities"
