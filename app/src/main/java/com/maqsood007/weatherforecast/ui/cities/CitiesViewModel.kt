@@ -1,8 +1,10 @@
 package com.maqsood007.weatherforecast.ui.cities
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.maqsood007.weatherforecast.WeatherApp
 import com.maqsood007.weatherforecast.data.response.cities.City
 import com.maqsood007.weatherforecast.ui.cities.adapter.CitiesListAdapter
@@ -10,6 +12,8 @@ import com.maqsood007.weatherforecast.utils.CitiesUtility
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -47,7 +51,7 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
 
         subscription =
             CitiesUtility.getCities(weatherApp)
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onCitiesFetchStart() }
                 .doOnTerminate { onCitiesFetchEnd() }

@@ -95,17 +95,20 @@ class SelectCitiesFragment : BaseFragment() {
         }
 
 
-        if (citiesViewModel.citiesList.value == null) {
-            citiesViewModel.getCities()
-        }
-
-
         fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.formatErrorLayout()
         fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.setOnClickListener(citiesViewModel.retryListener)
 
         fragmentSelectCitiesBinding.citiesViewModel = citiesViewModel
 
         return fragmentSelectCitiesBinding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        if (citiesViewModel.citiesList.value == null) {
+            citiesViewModel.getCities()
+        }
     }
 
 
