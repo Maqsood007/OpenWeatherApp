@@ -7,7 +7,7 @@
 
         <variable
             name="forecastViewModel"
-            type="com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel" />
+            type="com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,6 +36,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_50sdp"
             android:textStyle="bold"
+            android:includeFontPadding="false"
             android:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -50,11 +51,11 @@
             android:layout_marginStart="8dp"
             android:textColor="@color/white"
             android:fontFamily="@font/roboto_medium"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imgDescription"
+            app:layout_constraintTop_toTopOf="@+id/imgDescription"
             tools:text="TextView" />
 
         <TextView
@@ -69,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvTemprature"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imgWinds"
             app:layout_constraintTop_toBottomOf="@+id/tvTemRange"
             tools:text="TextView" />
 
@@ -84,7 +85,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tvWinds"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/imgTempRange"
             app:layout_constraintTop_toBottomOf="@+id/tvDescription"
             tools:text="TextView" />
 
@@ -132,33 +133,56 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgDescription"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginStart="16dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/tvTemprature"
             app:srcCompat="@drawable/ic_winds" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgTempRange"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginStart="16dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/tvTemRange"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/tvTemRange"
             app:srcCompat="@drawable/temprature" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgWinds"
             android:layout_width="@dimen/temp_info_size"
             android:layout_height="@dimen/temp_info_size"
             android:layout_marginStart="16dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/tvWinds"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/tvWinds"
             app:srcCompat="@drawable/ic_winds" />
+
+        <TextView
+            android:id="@+id/tvtodayDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner_date"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="@dimen/_5sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.122"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTemprature"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Monday 23, 2020" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

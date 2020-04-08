@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
 import com.maqsood007.weatherforecast.utils.CommonUtility
+import com.maqsood007.weatherforecast.utils.CommonUtility.convertToTitleCaseIteratingChars
 import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
 import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
 import com.maqsood007.weatherforecast.utils.DateTimeUtility
@@ -45,7 +46,7 @@ class LocationForecastListItemViewModel @Inject constructor() : ViewModel() {
         dayName.value =
             DateTimeUtility.getDayName(forecastItem?.dtTxt!!, DateTimeUtility.DATE_FORMATTER)
 
-        description.value = forecastItem.weather?.get(0)?.description
+        description.value = forecastItem.weather?.get(0)?.description?.convertToTitleCaseIteratingChars()
 
         winds.value = forecastItem.wind?.toWindSpeed()
         temprature.value = forecastItem.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)

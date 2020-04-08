@@ -20,10 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.maqsood007.weatherforecast.AppConstants
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentForecastByCitiesBinding
-import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
-import com.maqsood007.weatherforecast.utils.CommonUtility
-import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
-import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
+import com.maqsood007.weatherforecast.extensions.formatErrorLayout
 import com.test.nyt_most_viewed.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
@@ -105,29 +102,8 @@ class ForecastByCitiesFragment : BaseFragment() {
         }
 
 
-        val errorMessage =
-            SpannableString(resources.getString(R.string.something_went_wrong))
 
-        val clickHere =
-            SpannableString(resources.getString(R.string.click_here))
-
-        clickHere.setSpan(UnderlineSpan(), 0, clickHere.length, 0)
-
-        val clickHereText: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show()
-            }
-        }
-
-        clickHere.setSpan(clickHereText, 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        val ssb = SpannableStringBuilder()
-        ssb.append(errorMessage)
-        ssb.append(" ")
-        ssb.append(clickHere)
-
-
-        fragmentForecastByCitiesBinding.errorLayout.tvErrorTitle.text = ssb
+        fragmentForecastByCitiesBinding.errorLayout.tvErrorTitle.formatErrorLayout()
         fragmentForecastByCitiesBinding.errorLayout.tvErrorTitle.setOnClickListener(
             citiesForecastViewModel.retryListener
         )

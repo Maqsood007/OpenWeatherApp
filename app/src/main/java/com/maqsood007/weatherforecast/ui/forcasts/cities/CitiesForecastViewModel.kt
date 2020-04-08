@@ -34,20 +34,23 @@ class CitiesForecastViewModel @Inject constructor(private val weatherApi: Weathe
 
     var subscription: Disposable? = null
 
+    lateinit var citiesSearched : String
+
     override fun onCleared() {
         super.onCleared()
         subscription?.dispose()
     }
 
     val retryListener = View.OnClickListener {
-        getForecastByCities("")
+        getForecastByCities(citiesSearched)
     }
 
 
     fun getForecastByCities(cities: String) {
 
+        citiesSearched = cities
         subscription =
-            weatherApi.getForecastByCities(cities = cities)
+            weatherApi.getForecastByCities(cities = citiesSearched)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onForecastFetchStart() }

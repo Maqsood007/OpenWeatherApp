@@ -1,13 +1,12 @@
 package com.maqsood007.weatherforecast.utils
 
 import android.Manifest
-import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
-import com.maqsood007.weatherforecast.utils.LocationUtility.Companion.TAG
+import com.maqsood007.weatherforecast.ui.MainActivity
 
 /**
  * Created by Muhammad Maqsood on 07/04/2020.

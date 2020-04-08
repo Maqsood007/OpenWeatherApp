@@ -1,6 +1,5 @@
-package com.maqsood007.weatherforecast.utils
+package com.maqsood007.weatherforecast.ui
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
@@ -8,30 +7,19 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener
 import com.google.android.gms.common.api.ResultCallback
-import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
 import com.test.nyt_most_viewed.ui.base.BaseActivity
-import java.text.DateFormat
-import java.util.*
 import com.maqsood007.weatherforecast.R
+import com.maqsood007.weatherforecast.utils.LocationUtility
 import com.maqsood007.weatherforecast.utils.LocationUtility.Companion.REQUEST_CHECK_SETTINGS
 
 
@@ -63,7 +51,8 @@ class MainActivity : BaseActivity(),
         setupActionBarWithNavController(navController)
 
 
-        locationUtility = LocationUtility(this)
+        locationUtility =
+            LocationUtility(this)
         locationUtility?.startLocationClient()
         locationUtility?.mRequestingLocationUpdates = false
 

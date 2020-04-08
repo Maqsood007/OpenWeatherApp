@@ -48,12 +48,13 @@ public class CitiesListAdapter :
         holder.bind(city)
 
         holder.itemView.setOnClickListener {
-            if (isValidSelection())
+            if (isValidSelection(city))
                 toggleCitySelection(city, position)
         }
     }
 
-    private fun isValidSelection(): Boolean {
+    private fun isValidSelection(city: City?): Boolean {
+        if (city?.isSelected!!) return true
         return totalCitiesSelected.value!! < 7
     }
 

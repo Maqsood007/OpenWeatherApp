@@ -1,4 +1,4 @@
-package com.maqsood007.weatherforecast.ui.forcasts
+package com.maqsood007.weatherforecast.ui.forcasts.current_location
 
 import android.location.Location
 import android.util.Log
@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maqsood007.weatherforecast.data.WeatherApi
-import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
 import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
 import com.maqsood007.weatherforecast.ui.forcasts.current_location.adapter.LocationForecastListAdapter

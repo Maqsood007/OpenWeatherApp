@@ -1,34 +1,29 @@
 package com.maqsood007.weatherforecast.ui.forcasts.current_location
 
-import android.app.SearchManager
-import android.content.Context
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ClickableSpan
-import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.R
-import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
 import com.maqsood007.weatherforecast.databinding.FragmentForcastByLocationBinding
-import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
+import com.maqsood007.weatherforecast.extensions.formatErrorLayout
 import com.maqsood007.weatherforecast.utils.CommonUtility
+import com.maqsood007.weatherforecast.utils.CommonUtility.convertToTitleCaseIteratingChars
 import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
 import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
 import com.maqsood007.weatherforecast.utils.DateTimeUtility
 import com.test.nyt_most_viewed.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.city_list_item.*
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
 
@@ -43,6 +38,10 @@ class ForcastByLocationFragment : BaseFragment() {
 
     lateinit var weatherForecastViewModel: WeatherForecastViewModel
 
+    private val TAG = "ForcastByLocationFragment"
+
+
+    private var currentCityName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,19 +102,36 @@ class ForcastByLocationFragment : BaseFragment() {
 
                 todayForecast.let {
 
-                    val temprature = it?.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
+                    val temprature =
+                        it?.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
                     val winds = it?.wind?.toWindSpeed()
                     val description = it?.weather?.get(0)?.description
-                    val tempratureRange = "".plus(it?.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE)).plus("/")
-                        .plus(it?.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE))
+                    val tempratureRange =
+                        "".plus(it?.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE))
+                            .plus("/")
+                            .plus(it?.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE))
+
+                    val icon =
+                        "${BuildConfig.BASE_URL_ICON}${todayForecast?.weather?.get(0)?.icon}.png"
+                    loadImage(fragmentForcastByLocationBinding.imgDescription, icon)
 
                     fragmentForcastByLocationBinding.tvTemprature.text = temprature
+                    fragmentForcastByLocationBinding.imgWinds.visibility = View.VISIBLE
                     fragmentForcastByLocationBinding.tvWinds.text = winds
-                    fragmentForcastByLocationBinding.tvDescription.text = description
+                    fragmentForcastByLocationBinding.imgDescription.visibility = View.VISIBLE
+                    fragmentForcastByLocationBinding.tvDescription.text =
+                        description?.convertToTitleCaseIteratingChars()
+                    fragmentForcastByLocationBinding.imgTempRange.visibility = View.VISIBLE
                     fragmentForcastByLocationBinding.tvTemRange.text = tempratureRange
+
+                    fragmentForcastByLocationBinding.tvtodayDate.setText(DateTimeUtility.getTodayFormattedDate())
+                    fragmentForcastByLocationBinding.tvtodayDate.visibility = View.VISIBLE
+
 
                 }
 
+                currentCityName = it?.city?.name!!
+                setToolBarTitle()
             })
 
 
@@ -132,29 +148,8 @@ class ForcastByLocationFragment : BaseFragment() {
         }
 
 
-        val errorMessage =
-            SpannableString(resources.getString(R.string.something_went_wrong))
 
-        val clickHere =
-            SpannableString(resources.getString(R.string.click_here))
-
-        clickHere.setSpan(UnderlineSpan(), 0, clickHere.length, 0)
-
-        val clickHereText: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show()
-            }
-        }
-
-        clickHere.setSpan(clickHereText, 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        val ssb = SpannableStringBuilder()
-        ssb.append(errorMessage)
-        ssb.append(" ")
-        ssb.append(clickHere)
-
-
-        fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.text = ssb
+        fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.formatErrorLayout()
         fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.setOnClickListener(
             weatherForecastViewModel.retryListener
         )
@@ -171,6 +166,33 @@ class ForcastByLocationFragment : BaseFragment() {
     }
 
 
+    private val listener =
+        NavController.OnDestinationChangedListener { controller, destination, arguments ->
+            // react on change
+            // you can check destination.id or destination.label and act based on that
+            print(TAG)
+            if ((destination as FragmentNavigator.Destination).className.contains(TAG)) {
+                setToolBarTitle(currentCityName)
+            }
+        }
+
+    private fun setToolBarTitle(title: String = "") {
+        val screenTitle = if (title.isEmpty()) currentCityName else title
+        (activity as AppCompatActivity?)?.getSupportActionBar()
+            ?.setTitle(screenTitle.convertToTitleCaseIteratingChars())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        findNavController().addOnDestinationChangedListener(listener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        findNavController().removeOnDestinationChangedListener(listener)
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -180,7 +202,7 @@ class ForcastByLocationFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_search -> {
-               findNavController().navigate(R.id.action_forcastByLocationFragment_to_selectCitiesFragment)
+                findNavController().navigate(R.id.action_forcastByLocationFragment_to_selectCitiesFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

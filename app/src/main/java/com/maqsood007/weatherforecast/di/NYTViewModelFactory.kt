@@ -8,7 +8,7 @@ package com.test.nyt_most_viewed.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.maqsood007.weatherforecast.ui.cities.CitiesViewModel
-import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
+import com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel
 import com.maqsood007.weatherforecast.ui.forcasts.cities.CitiesForecastViewModel
 import dagger.Binds
 import dagger.MapKey

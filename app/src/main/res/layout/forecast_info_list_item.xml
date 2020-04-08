@@ -156,6 +156,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@color/white_with_opacity"
             android:visibility="@{locationForecastListItemViewModel.childVisibility, default = gone}"
             app:adapter="@{dayDataAdapter}"
             app:layout_constraintEnd_toEndOf="parent"

@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.maqsood007.weatherforecast.AppConstants.SELECTED_CITY
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentSelectCitiesBinding
+import com.maqsood007.weatherforecast.extensions.formatErrorLayout
 import com.test.nyt_most_viewed.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
@@ -105,29 +106,7 @@ class SelectCitiesFragment : BaseFragment() {
         }
 
 
-        val errorMessage =
-            SpannableString(resources.getString(R.string.something_went_wrong))
-
-        val clickHere =
-            SpannableString(resources.getString(R.string.click_here))
-
-        clickHere.setSpan(UnderlineSpan(), 0, clickHere.length, 0)
-
-        val clickHereText: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show()
-            }
-        }
-
-        clickHere.setSpan(clickHereText, 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        val ssb = SpannableStringBuilder()
-        ssb.append(errorMessage)
-        ssb.append(" ")
-        ssb.append(clickHere)
-
-
-        fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.text = ssb
+        fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.formatErrorLayout()
         fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.setOnClickListener(citiesViewModel.retryListener)
 
         fragmentSelectCitiesBinding.citiesViewModel = citiesViewModel
@@ -196,15 +175,5 @@ class SelectCitiesFragment : BaseFragment() {
         })
 
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("lifeCycle", "onDestroy")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("lifeCycle", "onDestroy")
     }
 }

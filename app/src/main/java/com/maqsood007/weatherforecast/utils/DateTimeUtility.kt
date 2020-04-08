@@ -13,6 +13,7 @@ object DateTimeUtility {
 
 
     val DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss"
+    val DATE_WITH_DAY_NAME = "EEE, dd YYYY"
     val TIME_AM_PM_FORMATTER = "hh:mm"
     val DATE_ONLY_FORMATTER = "yyyy-MM-dd"
     val DAY_NAME_ONLY_FORMATTER = "EEEE"
@@ -31,6 +32,17 @@ object DateTimeUtility {
         }
     }
 
+    fun getTodayFormattedDate(): String {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val localDateTime = LocalDateTime.now()
+            return localDateTime.format(DateTimeFormatter.ofPattern(DATE_WITH_DAY_NAME))
+        }else{
+            val today = Date()
+            val outputFormatter = SimpleDateFormat(DATE_WITH_DAY_NAME, Locale.getDefault())
+            return outputFormatter.format(today)
+        }
+    }
 
     fun getDayName(inputDate: String, parserFormatte: String) : String{
 

@@ -3,7 +3,7 @@ package com.maqsood007.weatherforecast
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import com.maqsood007.weatherforecast.utils.CitiesUtility
-import com.maqsood007.weatherforecast.utils.MainActivity
+import com.maqsood007.weatherforecast.ui.MainActivity
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
