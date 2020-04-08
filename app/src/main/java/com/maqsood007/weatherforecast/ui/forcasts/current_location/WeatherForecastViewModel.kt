@@ -54,8 +54,7 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
             weatherApi.getForecastByLocation(
                 locationCoordinates.first.toString(),
                 locationCoordinates.second.toString()
-            )
-                .subscribeOn(Schedulers.io())
+            ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onForecastFetchStart() }
                 .doOnTerminate { onForecastFetchEnd() }

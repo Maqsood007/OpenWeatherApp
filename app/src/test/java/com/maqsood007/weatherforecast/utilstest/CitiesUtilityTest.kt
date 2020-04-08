@@ -80,9 +80,9 @@ class CitiesUtilityTest {
         val dubai = City()
         citiesMocke.add(dubai)
         val sharjah = City()
-        citiesMocke.add(dubai)
+        citiesMocke.add(sharjah)
         val ajman = City()
-        citiesMocke.add(dubai)
+        citiesMocke.add(ajman)
 
         return citiesMocke.toList()
     }

@@ -1,3 +1,5 @@
+package com.maqsood007.weatherforecast.test
+
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.Disposable

@@ -1,12 +1,12 @@
 package com.maqsood007.weatherforecast.locationforecast
 
-import RxImmediateSchedulerRule
 import android.view.View
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
 import com.maqsood007.weatherforecast.locationforecast.utils.CitiesForecastMockedUtility
+import com.maqsood007.weatherforecast.test.RxImmediateSchedulerRule
 import com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel
 import io.reactivex.Observable
 import org.junit.*
@@ -48,6 +48,7 @@ class LocationForecastViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         weatherForecastViewModel = WeatherForecastViewModel(weatherApi)
+        this.weatherForecastViewModel?.locationCoordinates = Pair(25.346254, 55.420933)
     }
 
     // When data loaded successfully
@@ -132,9 +133,6 @@ class LocationForecastViewModelTest {
     }
 
 
-
-
-
     @Test
     fun test_error_visibility_on_load_success() {
 
@@ -211,7 +209,7 @@ class LocationForecastViewModelTest {
         weatherForecastViewModel?.getForecastByLocation()
 
 
-        assertTrue(weatherForecastViewModel?.errorMessage?.value !=null)
+        assertTrue(weatherForecastViewModel?.errorMessage?.value != null)
     }
 
 
