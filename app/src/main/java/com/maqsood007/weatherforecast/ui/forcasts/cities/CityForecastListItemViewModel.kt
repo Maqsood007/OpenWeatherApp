@@ -12,7 +12,9 @@ import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
 import com.maqsood007.weatherforecast.utils.DateTimeUtility
 import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.utils.CommonUtility
+import com.maqsood007.weatherforecast.utils.CommonUtility.convertToTitleCaseIteratingChars
 import com.squareup.picasso.Picasso
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -37,7 +39,7 @@ class CityForecastListItemViewModel @Inject constructor() : ViewModel() {
         winds.value = forecastItem.wind?.toWindSpeed()
         temprature.value = forecastItem.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
 
-        description.value = forecastItem.weather?.get(0)?.description
+        description.value = forecastItem.weather?.get(0)?.description?.convertToTitleCaseIteratingChars()
 
 
         imgCloud.value =

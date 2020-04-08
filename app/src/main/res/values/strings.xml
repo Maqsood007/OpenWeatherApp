@@ -19,5 +19,6 @@
     <string name="select_cities">Select Cities</string>
     <string name="search_forecast">SEARCH FORECAST</string>
     <string name="validation_msg">Min: 1, Max: 7</string>
+    <string name="forecast_by_cities">Forecast by cities</string>
 
 </resources>

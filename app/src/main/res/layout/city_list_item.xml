@@ -13,18 +13,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        >
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/cityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="@{citiesListItemViewModel.name}"
-            android:padding="@dimen/_10sdp"
             android:clickable="false"
             android:focusable="false"
+            android:padding="@dimen/_10sdp"
+            android:text="@{citiesListItemViewModel.name}"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -37,9 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:clickable="false"
-            android:focusable="false"
             android:checked="@{citiesListItemViewModel.isSelected}"
+            android:clickable="false"
+            android:buttonTint="@color/white"
+            android:focusable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

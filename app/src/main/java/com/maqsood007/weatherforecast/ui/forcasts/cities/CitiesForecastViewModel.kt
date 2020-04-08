@@ -47,7 +47,7 @@ class CitiesForecastViewModel @Inject constructor(private val weatherApi: Weathe
     fun getForecastByCities(cities: String) {
 
         subscription =
-            weatherApi.getForecastByCities(cities = "292223,2C292672,2C3130752")
+            weatherApi.getForecastByCities(cities = cities)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onForecastFetchStart() }

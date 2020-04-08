@@ -23,7 +23,7 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
     val cityListAdapter = CitiesListAdapter()
 
     val citiesList = MutableLiveData<List<City?>>()
-    var citiesListToShow = listOf<City?>()
+    var citiesListToShow = mutableListOf<City?>()
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorLayoutVisibility: MutableLiveData<Int> = MutableLiveData()
@@ -38,6 +38,7 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
     override fun onCleared() {
         super.onCleared()
         subscription.dispose()
+        resetSelection()
         cityListAdapter.clearCitiesSelectionCountObserver()
     }
 
@@ -73,7 +74,7 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
 
     private fun handleResponse(lisOfCities: List<City?>?) {
         citiesList.value = lisOfCities
-        citiesListToShow = citiesList.value!!
+        citiesListToShow.addAll(citiesList.value!!)
         updateCitiesAdapter()
     }
 
@@ -85,13 +86,22 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
     fun searchCities(query: String?) {
         query?.apply {
             val cities = CitiesUtility.searchCities(query)
-            citiesListToShow = cities!!
+            citiesListToShow = cities!!.toMutableList()
             updateCitiesAdapter()
         }
     }
 
+
+    fun resetSelection(){
+        citiesListToShow.apply {
+            this.forEach {
+                it?.isSelected = false
+            }
+        }
+    }
+
     fun searchClosed() {
-        citiesListToShow = citiesList.value!!
+        citiesListToShow = citiesList.value!!.toMutableList()
         updateCitiesAdapter()
     }
 

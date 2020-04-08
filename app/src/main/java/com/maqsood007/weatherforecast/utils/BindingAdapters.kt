@@ -13,7 +13,8 @@ import com.maqsood007.weatherforecast.R
 
 @BindingAdapter("bindTextWithCityCounter")
 public fun bindTextWithCityCounter(button: Button, citiesSelected: String) {
-    button.setText("SEARCH FORECAST " + citiesSelected)
+    val text = "SEARCH FORECAST ($citiesSelected)"
+    button.setText(text)
 }
 
 

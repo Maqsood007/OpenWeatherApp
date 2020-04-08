@@ -22,8 +22,10 @@ public class CitiesListAdapter :
 
     private lateinit var citiesList: List<City?>
 
-    public val counterToShow = MutableLiveData<String>("0")
-    public val totalCitiesSelected = MutableLiveData<Int>(0)
+    val counterToShow = MutableLiveData<String>("0")
+    val totalCitiesSelected = MutableLiveData<Int>(0)
+
+    val citiesSelected = mutableListOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -57,6 +59,9 @@ public class CitiesListAdapter :
 
     private fun toggleCitySelection(city: City?, position: Int) {
         city?.isSelected = !city?.isSelected!!
+
+        if (city.isSelected) citiesSelected.add(city.id!!) else citiesSelected.remove(element = (city.id))
+
         totalCitiesSelected.value =
             totalCitiesSelected.value?.plus(if (city.isSelected) 1 else -1)
         notifyItemChanged(position)
@@ -90,4 +95,19 @@ public class CitiesListAdapter :
         counterToShow.value = String().plus(it)
     }
 
+
+    fun getSelectedCities(): String? {
+
+        var citiesIds: String? = ""
+        citiesSelected.apply {
+
+            forEachIndexed { index, item ->
+                if (index < (citiesSelected.size - 1)) {
+                    citiesIds = citiesIds?.plus(item).plus(",")
+                } else citiesIds = citiesIds?.plus(item)
+            }
+        }
+
+        return citiesIds
+    }
 }

@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maqsood007.weatherforecast.AppConstants
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentForecastByCitiesBinding
 import com.maqsood007.weatherforecast.ui.forcasts.WeatherForecastViewModel
@@ -100,7 +101,7 @@ class ForecastByCitiesFragment : BaseFragment() {
 
 
         if (citiesForecastViewModel.citiesForecastData.value == null) {
-            citiesForecastViewModel.getForecastByCities("")
+            citiesForecastViewModel.getForecastByCities(arguments?.getString(AppConstants.SELECTED_CITY)!!)
         }
 
 

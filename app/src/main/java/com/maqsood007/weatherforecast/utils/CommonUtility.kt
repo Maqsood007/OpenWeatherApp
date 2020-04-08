@@ -2,7 +2,6 @@ package com.maqsood007.weatherforecast.utils
 
 import com.maqsood007.weatherforecast.data.response.currentlocation.Main
 import com.maqsood007.weatherforecast.data.response.currentlocation.Wind
-import java.text.DecimalFormat
 
 /**
  * Created by Muhammad Maqsood on 07/04/2020.
@@ -16,7 +15,7 @@ object CommonUtility {
         MAX_TEMPERATURE
     }
 
-    fun Main.toTempString(temperatureType: TemperatureType): String {
+     fun Main.toTempString(temperatureType: TemperatureType): String {
 
         val CONVERTION_UNIT = 273.15
 
@@ -32,7 +31,31 @@ object CommonUtility {
 
 
     fun Wind.toWindSpeed(): String {
-        return String.format("%.1f", speed?.times(3.6)) + "km/h";
+        return String.format("%.0f", speed?.times(3.6)) + "km/h";
     }
 
+
+    fun String.convertToTitleCaseIteratingChars(): String? {
+
+        val text = this
+
+        if (text.isEmpty()) {
+            return text
+        }
+        val converted = StringBuilder()
+        var convertNext = true
+        for (ch in text.toCharArray()) {
+            var char = ch
+            if (Character.isSpaceChar(char)) {
+                convertNext = true
+            } else if (convertNext) {
+                char = Character.toTitleCase(char)
+                convertNext = false
+            } else {
+                char = Character.toLowerCase(char)
+            }
+            converted.append(char)
+        }
+        return converted.toString()
+    }
 }

@@ -12,13 +12,16 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maqsood007.weatherforecast.AppConstants.SELECTED_CITY
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentSelectCitiesBinding
 import com.test.nyt_most_viewed.ui.base.BaseFragment
@@ -35,7 +38,7 @@ class SelectCitiesFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var citiesViewModel : CitiesViewModel
+    lateinit var citiesViewModel: CitiesViewModel
 
     private var searchView: SearchView? = null
 
@@ -92,21 +95,10 @@ class SelectCitiesFragment : BaseFragment() {
             fragmentSelectCitiesBinding.errorLayout.visibility = visibility
         })
 
+        fragmentSelectCitiesBinding.btnSearch.setOnClickListener {
+            navigateToSearch()
+        }
 
-//        citiesViewModel.urlToLoadDetails.observe(this, Observer {
-//
-//            if (it != null) {
-//                citiesViewModel.urlToLoadDetails.value = null
-//
-//                val bundle = bundleOf(AppConstants.Arguments.URL.toString() to it)
-//                findNavController().navigate(
-//                    R.id.action_nav_home_to_mostViewedDetailFragment,
-//                    bundle
-//                )
-//            }
-//
-//
-//        })
 
         if (citiesViewModel.citiesList.value == null) {
             citiesViewModel.getCities()
@@ -141,6 +133,18 @@ class SelectCitiesFragment : BaseFragment() {
         fragmentSelectCitiesBinding.citiesViewModel = citiesViewModel
 
         return fragmentSelectCitiesBinding.root
+    }
+
+
+    fun navigateToSearch() {
+
+        val bundle =
+            bundleOf(SELECTED_CITY to citiesViewModel.cityListAdapter.getSelectedCities())
+
+        findNavController().navigate(
+            R.id.action_selectCitiesFragment_to_forecastByCitiesFragment,
+            bundle
+        )
     }
 
 
@@ -183,7 +187,7 @@ class SelectCitiesFragment : BaseFragment() {
             }
         })
 
-        searchView?.setOnCloseListener (object : SearchView.OnCloseListener {
+        searchView?.setOnCloseListener(object : SearchView.OnCloseListener {
             override fun onClose(): Boolean {
                 Log.d("setOnCloseListener", "closed")
                 citiesViewModel.searchClosed()
@@ -192,5 +196,15 @@ class SelectCitiesFragment : BaseFragment() {
         })
 
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("lifeCycle", "onDestroy")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("lifeCycle", "onDestroy")
     }
 }

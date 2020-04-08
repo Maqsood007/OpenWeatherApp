@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/weather_blue_bg"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".ui.cities.SelectCitiesFragment">
 
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
+            android:background="@drawable/rounded_corner"
             android:layout_marginBottom="16dp"
             android:enabled="@{citiesViewModel.cityListAdapter.totalCitiesSelected.intValue()>0}"
             app:bindTextWithCityCounter="@{citiesViewModel.cityListAdapter.counterToShow}"
@@ -68,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/validation_msg"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

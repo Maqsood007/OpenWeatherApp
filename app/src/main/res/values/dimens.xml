@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="temp_info_size">@dimen/_20sdp</dimen>
+    <dimen name="wind_icon_size">@dimen/_10sdp</dimen>
+
+</resources>

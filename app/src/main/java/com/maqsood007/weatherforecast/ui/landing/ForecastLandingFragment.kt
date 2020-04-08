@@ -26,20 +26,7 @@ class ForecastLandingFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // Screen navigation listeners
-        btnCurrentTempDetails.setOnClickListener { navigateToLocationForecast() }
-        btnCityTempDetails.setOnClickListener { navigateToCitiesForecast() }
     }
 
-
-    // Navigate to Forecast by location
-    private fun navigateToLocationForecast(){
-        findNavController().navigate(R.id.action_forcastLandingFragment_to_forcastByLocationFragment)
-    }
-
-    // Navigate to Forecast by cities
-    private fun navigateToCitiesForecast(){
-        findNavController().navigate(R.id.action_forcastLandingFragment_to_forecastByCitiesFragment)
-    }
 
 }
