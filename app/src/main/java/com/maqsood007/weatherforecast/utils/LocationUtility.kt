@@ -23,7 +23,6 @@ import com.maqsood007.weatherforecast.ui.MainActivity
 class LocationUtility(private val mainActivity: MainActivity) {
 
 
-
     public var mGoogleApiClient: GoogleApiClient? = null
     protected var mLocationRequest: LocationRequest? = null
     protected var mLocationSettingsRequest: LocationSettingsRequest? = null
@@ -132,7 +131,7 @@ class LocationUtility(private val mainActivity: MainActivity) {
         return false
     }
 
-     fun requestPermissions() {
+    fun requestPermissions() {
         ActivityCompat.requestPermissions(
             mainActivity,
             arrayOf(
@@ -146,7 +145,7 @@ class LocationUtility(private val mainActivity: MainActivity) {
     /**
      * Removes location updates from the FusedLocationApi.
      */
-     fun stopLocationUpdates() {
+    fun stopLocationUpdates() {
         // It is a good practice to remove location requests when the activity is in a paused or
         // stopped state. Doing so helps battery performance and is especially
         // recommended in applications that request frequent location updates.

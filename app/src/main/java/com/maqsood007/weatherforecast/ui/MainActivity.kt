@@ -28,8 +28,7 @@ class MainActivity : BaseActivity(),
     LocationListener,
     ResultCallback<LocationSettingsResult> {
 
-
-    protected var mCurrentLocation: MutableLiveData<Location?>? = null
+    var currentLocation = MutableLiveData<Pair<Double, Double>>()
 
 
     protected val TAG = "MainActivity"
@@ -117,7 +116,11 @@ class MainActivity : BaseActivity(),
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 // Granted. Start getting the location information
@@ -162,19 +165,21 @@ class MainActivity : BaseActivity(),
             TAG,
             "Connected to GoogleApiClient"
         )
-        if (mCurrentLocation?.value == null) {
-            mCurrentLocation?.value =
-                LocationServices.FusedLocationApi.getLastLocation(locationUtility?.mGoogleApiClient)
-//            Log.d("LAT_LNG_onConnected",  "".plus(mCurrentLocation?.value?.latitude).plus("::").plus(mCurrentLocation?.value!!.longitude));
+        val location =
+            LocationServices.FusedLocationApi.getLastLocation(locationUtility?.mGoogleApiClient)
+        if (location != null) {
+            val locationInfo = Pair(location.latitude, location.longitude)
+            currentLocation.value = locationInfo
         }
     }
+
 
     /**
      * Callback that fires when the location changes.
      */
     override fun onLocationChanged(location: Location) {
-        mCurrentLocation?.value = location
-        Log.d("LAT_LNG_onChanged",  "".plus(mCurrentLocation?.value?.latitude).plus("::").plus(mCurrentLocation?.value?.longitude));
+        val locationInfo = Pair(location.latitude, location.longitude)
+        currentLocation.value = locationInfo
     }
 
     override fun onConnectionSuspended(cause: Int) {

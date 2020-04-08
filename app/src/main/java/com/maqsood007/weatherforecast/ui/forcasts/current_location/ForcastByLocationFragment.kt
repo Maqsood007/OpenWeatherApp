@@ -17,6 +17,7 @@ import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentForcastByLocationBinding
 import com.maqsood007.weatherforecast.extensions.formatErrorLayout
+import com.maqsood007.weatherforecast.ui.MainActivity
 import com.maqsood007.weatherforecast.utils.CommonUtility
 import com.maqsood007.weatherforecast.utils.CommonUtility.convertToTitleCaseIteratingChars
 import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
@@ -143,10 +144,15 @@ class ForcastByLocationFragment : BaseFragment() {
             })
 
 
-        if (weatherForecastViewModel.locationForecastData.value == null) {
-            weatherForecastViewModel.getForecastByLocation()
-        }
+        (context as MainActivity).currentLocation.observe(viewLifecycleOwner, Observer {
 
+            if (weatherForecastViewModel.locationForecastData.value == null) {
+
+                weatherForecastViewModel.locationCoordinates  = it
+                weatherForecastViewModel.getForecastByLocation()
+            }
+
+        })
 
 
         fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.formatErrorLayout()

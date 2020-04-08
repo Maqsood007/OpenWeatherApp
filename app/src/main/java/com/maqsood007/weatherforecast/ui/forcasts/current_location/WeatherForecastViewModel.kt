@@ -22,7 +22,7 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
     ViewModel() {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val errorLayoutVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorLayoutVisibility: MutableLiveData<Int> = MutableLiveData(View.GONE)
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
 
@@ -32,8 +32,6 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
     val forecastAdapter = LocationForecastListAdapter()
 
     var subscription: Disposable? = null
-
-    lateinit var userLocation: Location
 
     override fun onCleared() {
         super.onCleared()
@@ -45,6 +43,8 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
         locationForecastMappedData.value = mutableMap
     }
 
+    var locationCoordinates = Pair<Double, Double>(0.0, 0.0)
+
     val retryListener = View.OnClickListener {
         getForecastByLocation()
     }
@@ -53,8 +53,8 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
 
         subscription =
             weatherApi.getForecastByLocation(
-                "25.346254",
-                "55.420933"
+                locationCoordinates.first.toString(),
+                locationCoordinates.second.toString()
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
