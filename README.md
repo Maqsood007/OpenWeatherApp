@@ -39,7 +39,7 @@ This repository has android Implementation of Android JetPack &amp; MVVM to fetc
    - Write and enter './gradlew app:test or ./gradlew test' to run all the unit test in the project without coverage.
    - You can found reports at /OpenWeatherApp/app/build/reports/tests
      - Folder **tests** will contain unit tests reports.
-   ![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/Screen%20Shot%202020-01-02%20at%2012.28.28%20AM.png) 
+   ![alt text](https://github.com/Maqsood007/OpenWeatherApp/blob/master/screenshots/test_reports_stats.png) 
       
    - **Test with coverage:**   
    - Folder **androidTest** will contain instrumental tests reports.
@@ -47,7 +47,7 @@ This repository has android Implementation of Android JetPack &amp; MVVM to fetc
    - You can found simple reports statistics reports at path **/OpenWeatherApp/app/build/reports/androidTests**.
    - You can found coverage reports at path **/OpenWeatherApp/app/build/reports/coverage**.
    
-   ![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/Screen%20Shot%202020-01-02%20at%2012.28.38%20AM.png) 
+   ![alt text](https://github.com/Maqsood007/OpenWeatherApp/blob/master/screenshots/test_with_coverage.png) 
 
 
 # Technologies stack:
@@ -102,15 +102,11 @@ The coding approach is counted as batter or best on the base of few parameters. 
 # ScreenShots: Output:
 **Portrait:**
 
-![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/device-2020-01-01-230135.png)
-
-![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/device-2020-01-01-230227.png)
+![alt text](https://github.com/Maqsood007/OpenWeatherApp/blob/master/screenshots/weatherApp.gif)
 
 **Landscape:**
 
-![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/device-2020-01-01-230309.png)
-
-![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/device-2020-01-01-230327.png)
+![alt text](https://github.com/Maqsood007/OpenWeatherApp/blob/master/screenshots/weatherApp-landscape.gif)
 
    
    
