@@ -29,20 +29,22 @@ This repository has android Implementation of Android JetPack &amp; MVVM to fetc
    - Clone the Project from https://github.com/Maqsood007/OpenWeatherApp.git.
    - Open the command line terminal.
    - Navigate to the cloned repo 'OpenWeatherApp'.
-   - **Important**sWrite command 'touch local.properties' to generate the file and copy paste your system installation path to SDK i.e dk.dir=/Users/maqsood/Library/Android/sdk.
+   - **Important** Write command 'touch local.properties' (MacOs user)to generate the file and copy paste your system installation path to SDK i.e dk.dir=/Users/maqsood/Library/Android/sdk.
    - Write and enter './gradlew clean' to clean the project.
    - Write and enter './gradlew build' to build the project.
    
    **After building the project successfully follow below to generate the reports.**
    
    - **Test with out coverage:**
-   - Write and enter './gradlew app:test' to run all the test in the project without coverage.
-   - You can found reports at /OpenWeatherApp/app/build/reports
-     - Folder **androidTest** will contain instrumental tests reports and **tests** will contain unit tests reports.
+   - Write and enter './gradlew app:test or ./gradlew test' to run all the unit test in the project without coverage.
+   - You can found reports at /OpenWeatherApp/app/build/reports/tests
+     - Folder **tests** will contain unit tests reports.
    ![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/Screen%20Shot%202020-01-02%20at%2012.28.28%20AM.png) 
       
    - **Test with coverage:**   
+   - Folder **androidTest** will contain instrumental tests reports.
    - Write and enter './gradlew connectedAndroidTest' to run all the test in the project and generate the coverage reports.
+   - You can found simple reports statistics reports at path **/OpenWeatherApp/app/build/reports/androidTests**.
    - You can found coverage reports at path **/OpenWeatherApp/app/build/reports/coverage**.
    
    ![alt text](https://github.com/Maqsood007/NYT-Most-Popular/blob/development/screenshots/Screen%20Shot%202020-01-02%20at%2012.28.38%20AM.png) 
