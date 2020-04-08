@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.di.component
+package com.maqsood007.weatherforecast.di.component
 
 /**
  * @author Muhammad Maqsood.
@@ -7,8 +7,9 @@ package com.test.nyt_most_viewed.di.component
 
 
 import com.maqsood007.weatherforecast.WeatherApp
-import com.test.nyt_most_viewed.di.ViewModelModule
-import com.test.nyt_most_viewed.di.module.*
+import com.maqsood007.weatherforecast.di.module.*
+
+
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

@@ -9,15 +9,14 @@ import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocat
 import com.maqsood007.weatherforecast.locationforecast.utils.CitiesForecastMockedUtility
 import com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel
 import io.reactivex.Observable
-import io.reactivex.Single
 import org.junit.*
+import org.junit.Assert.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import java.net.SocketException
-import org.junit.Assert.*
 
 /**
  * Created by Muhammad Maqsood on 08/04/2020.

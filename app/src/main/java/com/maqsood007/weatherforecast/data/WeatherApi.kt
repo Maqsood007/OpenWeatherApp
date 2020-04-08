@@ -1,11 +1,10 @@
 package com.maqsood007.weatherforecast.data
 
-import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
 import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
+import io.reactivex.Observable
+import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**

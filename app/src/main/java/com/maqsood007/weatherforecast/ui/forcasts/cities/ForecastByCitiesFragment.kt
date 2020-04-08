@@ -1,17 +1,11 @@
 package com.maqsood007.weatherforecast.ui.forcasts.cities
 
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ClickableSpan
-import android.text.style.UnderlineSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -21,7 +15,7 @@ import com.maqsood007.weatherforecast.AppConstants
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentForecastByCitiesBinding
 import com.maqsood007.weatherforecast.extensions.formatErrorLayout
-import com.test.nyt_most_viewed.ui.base.BaseFragment
+import com.maqsood007.weatherforecast.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
 

@@ -5,7 +5,9 @@ import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
 import com.maqsood007.weatherforecast.ui.MainActivity
 
 /**

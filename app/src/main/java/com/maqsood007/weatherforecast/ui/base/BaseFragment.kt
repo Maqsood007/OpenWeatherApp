@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.ui.base
+package com.maqsood007.weatherforecast.ui.base
 
 /**
  * @author Muhammad Maqsood.

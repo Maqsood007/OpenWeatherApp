@@ -16,9 +16,12 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener
 import com.google.android.gms.common.api.ResultCallback
-import com.google.android.gms.location.*
-import com.test.nyt_most_viewed.ui.base.BaseActivity
+import com.google.android.gms.location.LocationListener
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsResult
+import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.maqsood007.weatherforecast.R
+import com.maqsood007.weatherforecast.ui.base.BaseActivity
 import com.maqsood007.weatherforecast.utils.LocationUtility
 import com.maqsood007.weatherforecast.utils.LocationUtility.Companion.REQUEST_CHECK_SETTINGS
 

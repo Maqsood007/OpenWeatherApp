@@ -1,20 +1,13 @@
 package com.maqsood007.weatherforecast.ui.forcasts.cities
 
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
-import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
-import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
-import com.maqsood007.weatherforecast.utils.DateTimeUtility
 import com.maqsood007.weatherforecast.BuildConfig
+import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
 import com.maqsood007.weatherforecast.utils.CommonUtility
 import com.maqsood007.weatherforecast.utils.CommonUtility.convertToTitleCaseIteratingChars
-import com.squareup.picasso.Picasso
-import java.util.*
+import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
+import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
 import javax.inject.Inject
 
 /**
@@ -37,7 +30,7 @@ class CityForecastListItemViewModel @Inject constructor() : ViewModel() {
         cityName.value = forecastItem?.name!!
 
         winds.value = forecastItem.wind?.toWindSpeed()
-        temprature.value = forecastItem.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
+        temprature.value = "${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE)}~${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE)}"
 
         description.value = forecastItem.weather?.get(0)?.description?.convertToTitleCaseIteratingChars()
 

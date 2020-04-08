@@ -3,14 +3,8 @@ package com.maqsood007.weatherforecast.ui.cities
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ClickableSpan
-import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -25,7 +19,7 @@ import com.maqsood007.weatherforecast.AppConstants.SELECTED_CITY
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentSelectCitiesBinding
 import com.maqsood007.weatherforecast.extensions.formatErrorLayout
-import com.test.nyt_most_viewed.ui.base.BaseFragment
+import com.maqsood007.weatherforecast.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
 

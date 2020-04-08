@@ -1,14 +1,10 @@
 package com.maqsood007.weatherforecast.utils
 
-import android.app.Application
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.maqsood007.weatherforecast.data.response.cities.CitiesResponses
 import com.maqsood007.weatherforecast.data.response.cities.City
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import java.io.InputStream
 
 /**

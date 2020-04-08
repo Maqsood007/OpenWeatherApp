@@ -1,11 +1,6 @@
-package com.test.nyt_most_viewed.data.local
+package com.maqsood007.weatherforecast.data.local
 
-import android.content.Context
 import android.content.SharedPreferences
-import android.database.Observable
-import android.preference.PreferenceManager
-import androidx.databinding.ObservableBoolean
-import javax.inject.Inject
 
 
 class AppPreference(var sharedPreferences: SharedPreferences) :

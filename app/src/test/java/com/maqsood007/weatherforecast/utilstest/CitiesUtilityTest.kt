@@ -1,9 +1,9 @@
 package com.maqsood007.weatherforecast.utilstest
 
 import com.maqsood007.weatherforecast.data.response.cities.City
-import com.maqsood007.weatherforecast.data.response.currentlocation.Wind
 import com.maqsood007.weatherforecast.utils.CitiesUtility
-import org.junit.Assert.*
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

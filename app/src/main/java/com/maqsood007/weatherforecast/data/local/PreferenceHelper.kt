@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.data.local
+package com.maqsood007.weatherforecast.data.local
 
 interface PreferenceHelper {
     fun isUserLogin(): Boolean

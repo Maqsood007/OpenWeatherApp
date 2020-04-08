@@ -4,8 +4,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
-import com.maqsood007.weatherforecast.ui.forcasts.current_location.bindText
 import com.maqsood007.weatherforecast.ui.MainActivity
+import com.maqsood007.weatherforecast.ui.forcasts.current_location.bindText
 import com.maqsood007.weatherforecast.utils.bindTextWithCityCounter
 import org.junit.Assert
 import org.junit.Rule

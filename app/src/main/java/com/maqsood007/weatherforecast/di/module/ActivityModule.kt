@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.di.module
+package com.maqsood007.weatherforecast.di.module
 
 import com.maqsood007.weatherforecast.ui.MainActivity
 import dagger.Module

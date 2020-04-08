@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.di
+package com.maqsood007.weatherforecast.di.module
 
 /**
  * @author Muhammad Maqsood.

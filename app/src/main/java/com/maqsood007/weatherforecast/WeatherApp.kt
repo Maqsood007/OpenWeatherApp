@@ -5,7 +5,7 @@ import android.app.Application
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDex
-import com.test.nyt_most_viewed.di.component.DaggerForecastAppComponent
+import com.maqsood007.weatherforecast.di.component.DaggerForecastAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector

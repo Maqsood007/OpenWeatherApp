@@ -90,6 +90,26 @@
             tools:text="TextView" />
 
 
+        <TextView
+            android:id="@+id/tvtodayDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner_date"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="@dimen/_5sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.122"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTemprature"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Monday 23, 2020" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
@@ -116,10 +136,13 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:progressTint="@color/white"
+            android:minWidth="@dimen/_50sdp"
+            android:indeterminateTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
@@ -128,7 +151,7 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_percent="0.35218878"
+            app:layout_constraintGuide_percent="0.40218878"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -165,24 +188,19 @@
             app:srcCompat="@drawable/ic_winds" />
 
         <TextView
-            android:id="@+id/tvtodayDate"
+            android:id="@+id/tvAppName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner_date"
-            android:fontFamily="@font/roboto_medium"
-            android:padding="@dimen/_5sdp"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:text=""
+            android:text="@string/app_name"
+            android:textSize="@dimen/_35sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:fontFamily="@font/homework"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.122"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTemprature"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="Monday 23, 2020" />
+            app:layout_constraintTop_toBottomOf="@+id/errorLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

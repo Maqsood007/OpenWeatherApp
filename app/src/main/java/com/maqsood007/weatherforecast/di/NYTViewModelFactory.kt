@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.di
+package com.maqsood007.weatherforecast.di.module
 
 /**
  * @author Muhammad Maqsood.
@@ -8,8 +8,8 @@ package com.test.nyt_most_viewed.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.maqsood007.weatherforecast.ui.cities.CitiesViewModel
-import com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel
 import com.maqsood007.weatherforecast.ui.forcasts.cities.CitiesForecastViewModel
+import com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

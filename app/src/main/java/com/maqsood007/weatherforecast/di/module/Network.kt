@@ -1,4 +1,4 @@
-package com.test.nyt_most_viewed.di.module
+package com.maqsood007.weatherforecast.di.module
 
 /**
  * @author Muhammad Maqsood.
@@ -6,16 +6,13 @@ package com.test.nyt_most_viewed.di.module
 
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.BuildConfig
-import com.maqsood007.weatherforecast.WeatherApp
-import com.test.nyt_most_viewed.di.ScheduleProvider
+import com.maqsood007.weatherforecast.data.WeatherApi
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter

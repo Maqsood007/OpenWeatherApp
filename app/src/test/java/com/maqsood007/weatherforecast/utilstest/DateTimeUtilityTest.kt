@@ -1,9 +1,10 @@
 package com.maqsood007.weatherforecast.utilstest
 
 import com.maqsood007.weatherforecast.utils.DateTimeUtility
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Assert.*
 import org.junit.runners.JUnit4
 
 /**

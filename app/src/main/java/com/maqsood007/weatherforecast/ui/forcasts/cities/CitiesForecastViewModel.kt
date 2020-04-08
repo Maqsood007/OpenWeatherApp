@@ -1,17 +1,11 @@
 package com.maqsood007.weatherforecast.ui.forcasts.cities
 
-import android.location.Location
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
-import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
-import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
 import com.maqsood007.weatherforecast.ui.forcasts.cities.adapter.CitiesForecastListAdapter
-import com.maqsood007.weatherforecast.ui.forcasts.current_location.adapter.LocationForecastListAdapter
-import com.maqsood007.weatherforecast.utils.DateTimeUtility
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers

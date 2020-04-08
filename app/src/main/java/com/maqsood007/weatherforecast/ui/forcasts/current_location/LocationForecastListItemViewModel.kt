@@ -55,8 +55,8 @@ class LocationForecastListItemViewModel @Inject constructor() : ViewModel() {
         time.value =
             DateTimeUtility.getTime(forecastItem.dtTxt, DateTimeUtility.DATE_FORMATTER)
 
-        /*     ${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE) }*/
-        tempRange.value = "${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE) }"
+
+        tempRange.value = "${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE) }~${forecastItem.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE) }"
 
 
         imgCloud.value =

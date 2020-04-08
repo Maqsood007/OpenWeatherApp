@@ -1,11 +1,7 @@
 package com.maqsood007.weatherforecast.locationforecast.utils
 
 import com.google.gson.Gson
-import com.maqsood007.weatherforecast.data.response.cities.City
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
-import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
-import io.reactivex.Observable
-import org.mockito.Mockito
 
 /**
  * Created by Muhammad Maqsood on 08/04/2020.

@@ -24,8 +24,7 @@
             android:id="@+id/tvDay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/roboto_bold"
             android:gravity="start"
@@ -33,12 +32,11 @@
             android:text="@{locationForecastListItemViewModel.dayName}"
             android:textColor="@color/white"
             android:textSize="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dayRecycleView"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/day_monday" />
 
 
@@ -62,7 +60,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
@@ -71,11 +68,10 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dayRecycleView"
             app:layout_constraintEnd_toStartOf="@+id/tvTemprature"
             app:layout_constraintStart_toEndOf="@+id/tvIconTemp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/txt_temp_info" />
 
 
@@ -83,16 +79,14 @@
             android:id="@+id/tvTemprature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/roboto_bold"
             android:text="@{locationForecastListItemViewModel.temprature}"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dayRecycleView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="@string/txt_temprature" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -132,11 +126,9 @@
             android:id="@+id/imageView5"
             android:layout_width="@dimen/wind_icon_size"
             android:layout_height="@dimen/wind_icon_size"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dayRecycleView"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_winds" />
 
         <ImageView
@@ -144,18 +136,16 @@
             android:layout_width="@dimen/temp_info_size"
             android:layout_height="@dimen/temp_info_size"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             app:imageUrl="@{locationForecastListItemViewModel.imgCloud}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dayRecycleView"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dayRecycleView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="0dp"
             android:background="@color/white_with_opacity"
             android:visibility="@{locationForecastListItemViewModel.childVisibility, default = gone}"
             app:adapter="@{dayDataAdapter}"

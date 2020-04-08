@@ -8,7 +8,6 @@ import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.TextView
 import com.maqsood007.weatherforecast.R
-import kotlinx.android.synthetic.main.error_layout.view.*
 
 /**
  * Created by Muhammad Maqsood on 08/04/2020.

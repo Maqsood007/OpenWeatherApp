@@ -18,13 +18,12 @@ import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentForcastByLocationBinding
 import com.maqsood007.weatherforecast.extensions.formatErrorLayout
 import com.maqsood007.weatherforecast.ui.MainActivity
+import com.maqsood007.weatherforecast.ui.base.BaseFragment
 import com.maqsood007.weatherforecast.utils.CommonUtility
 import com.maqsood007.weatherforecast.utils.CommonUtility.convertToTitleCaseIteratingChars
 import com.maqsood007.weatherforecast.utils.CommonUtility.toTempString
 import com.maqsood007.weatherforecast.utils.CommonUtility.toWindSpeed
 import com.maqsood007.weatherforecast.utils.DateTimeUtility
-import com.test.nyt_most_viewed.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.city_list_item.*
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
 
@@ -109,12 +108,14 @@ class ForcastByLocationFragment : BaseFragment() {
                     val description = it?.weather?.get(0)?.description
                     val tempratureRange =
                         "".plus(it?.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE))
-                            .plus("/")
+                            .plus("~")
                             .plus(it?.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE))
 
                     val icon =
                         "${BuildConfig.BASE_URL_ICON}${todayForecast?.weather?.get(0)?.icon}.png"
                     loadImage(fragmentForcastByLocationBinding.imgDescription, icon)
+
+                    fragmentForcastByLocationBinding.tvAppName.visibility = View.GONE
 
                     fragmentForcastByLocationBinding.tvTemprature.text = temprature
                     fragmentForcastByLocationBinding.imgWinds.visibility = View.VISIBLE

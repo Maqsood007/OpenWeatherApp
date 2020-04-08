@@ -1,6 +1,5 @@
 package com.maqsood007.weatherforecast.ui.forcasts.current_location
 
-import android.location.Location
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
