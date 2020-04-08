@@ -24,6 +24,7 @@ import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.ui.base.BaseActivity
 import com.maqsood007.weatherforecast.utils.LocationUtility
 import com.maqsood007.weatherforecast.utils.LocationUtility.Companion.REQUEST_CHECK_SETTINGS
+import com.maqsood007.weatherforecast.utils.SingleLiveEvent
 
 
 class MainActivity : BaseActivity(),
@@ -31,7 +32,7 @@ class MainActivity : BaseActivity(),
     LocationListener,
     ResultCallback<LocationSettingsResult> {
 
-    var currentLocation = MutableLiveData<Pair<Double, Double>>()
+    var currentLocation = SingleLiveEvent<Pair<Double, Double>>()
 
 
     protected val TAG = "MainActivity"

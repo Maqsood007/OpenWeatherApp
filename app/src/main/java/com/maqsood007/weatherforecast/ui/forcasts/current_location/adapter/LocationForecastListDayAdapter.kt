@@ -18,7 +18,7 @@ public class LocationForecastListDayAdapter :
     RecyclerView.Adapter<LocationForecastListDayAdapter.ViewHolder>() {
 
 
-    private var locationForeCastDayData = listOf<ListItem>()
+    private var locationForeCastDayData = mutableListOf<ListItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -51,6 +51,9 @@ public class LocationForecastListDayAdapter :
         notifyDataSetChanged()
     }
 
+    fun clearOldData() {
+        locationForeCastDayData.clear()
+    }
 
     class ViewHolder(private val forecastInfoByTimeListItemBinding: ForecastInfoByTimeListItemBinding) :
         RecyclerView.ViewHolder(forecastInfoByTimeListItemBinding.root) {

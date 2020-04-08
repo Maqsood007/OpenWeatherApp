@@ -43,6 +43,8 @@ class ForcastByLocationFragment : BaseFragment() {
 
     private var currentCityName = ""
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -147,7 +149,7 @@ class ForcastByLocationFragment : BaseFragment() {
 
         (context as MainActivity).currentLocation.observe(viewLifecycleOwner, Observer {
 
-            if (weatherForecastViewModel.locationForecastData.value == null) {
+            if (weatherForecastViewModel.locationForecastData.value == null && weatherForecastViewModel.locationCoordinates.first == 0.0) {
 
                 weatherForecastViewModel.locationCoordinates  = it
                 weatherForecastViewModel.getForecastByLocation()

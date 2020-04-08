@@ -84,8 +84,8 @@ public class LocationForecastListAdapter :
             forecastInfoListItemBinding.dayRecycleView.layoutManager = layoutManager
 
             val dayDataAdapter = LocationForecastListDayAdapter().apply {
+                clearOldData()
                 addDayTimeForCast(result)
-                notifyDataSetChanged()
             }
 
             with(forecastInfoListItemBinding) {
