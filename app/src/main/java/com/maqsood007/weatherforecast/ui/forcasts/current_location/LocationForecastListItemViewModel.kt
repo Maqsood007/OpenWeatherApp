@@ -21,6 +21,7 @@ import javax.inject.Inject
  */
 class LocationForecastListItemViewModel @Inject constructor() : ViewModel() {
 
+    // Data for the parent view.
     private val dayName = MutableLiveData<String>()
     private val winds = MutableLiveData<String>()
     private val description = MutableLiveData<String>()
@@ -31,10 +32,8 @@ class LocationForecastListItemViewModel @Inject constructor() : ViewModel() {
     private val time = MutableLiveData<String>()
     private val tempRange = MutableLiveData<String>()
 
+    // A custom property to keep track fot the expand/collapse behaviour
     private val childVisibility = MutableLiveData<Int>()
-
-
-    private val isSelected = MutableLiveData<Boolean>()
 
 
     fun bind(forecastItem: ListItem?, isParent: Boolean = true) {
@@ -90,10 +89,6 @@ class LocationForecastListItemViewModel @Inject constructor() : ViewModel() {
 
     fun getTempRange(): MutableLiveData<String> {
         return tempRange
-    }
-
-    fun isSelected(): MutableLiveData<Boolean> {
-        return isSelected
     }
 
     fun getChildVisibility(): MutableLiveData<Int> {

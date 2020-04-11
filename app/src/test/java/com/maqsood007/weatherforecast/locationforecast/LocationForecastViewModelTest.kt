@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
-import com.maqsood007.weatherforecast.locationforecast.utils.CitiesForecastMockedUtility
+import com.maqsood007.weatherforecast.locationforecast.utils.ForecastMockedDataUtility
 import com.maqsood007.weatherforecast.test.RxImmediateSchedulerRule
 import com.maqsood007.weatherforecast.ui.forcasts.current_location.WeatherForecastViewModel
 import io.reactivex.Observable
@@ -28,7 +28,6 @@ class LocationForecastViewModelTest {
 
     @get:Rule
     var rule = InstantTaskExecutorRule()
-
 
     companion object {
         @ClassRule
@@ -57,7 +56,7 @@ class LocationForecastViewModelTest {
 
         val location = Pair("25.346254", "55.420933")
 
-        val mockedResponse = CitiesForecastMockedUtility.getCurrentLocationForecastMockedResponse()
+        val mockedResponse = ForecastMockedDataUtility.getCurrentLocationForecastMockedResponse()
 
         Mockito.`when`(
             this.weatherApi.getForecastByLocation(location.first, location.second)
@@ -99,7 +98,7 @@ class LocationForecastViewModelTest {
 
         val location = Pair("25.346254", "55.420933")
 
-        val mockedResponse = CitiesForecastMockedUtility.getCurrentLocationForecastMockedResponse()
+        val mockedResponse = ForecastMockedDataUtility.getCurrentLocationForecastMockedResponse()
 
         Mockito.`when`(
             this.weatherApi.getForecastByLocation(location.first, location.second)
@@ -138,7 +137,7 @@ class LocationForecastViewModelTest {
 
         val location = Pair("25.346254", "55.420933")
 
-        val mockedResponse = CitiesForecastMockedUtility.getCurrentLocationForecastMockedResponse()
+        val mockedResponse = ForecastMockedDataUtility.getCurrentLocationForecastMockedResponse()
 
         Mockito.`when`(
             this.weatherApi.getForecastByLocation(location.first, location.second)
@@ -178,7 +177,7 @@ class LocationForecastViewModelTest {
 
         val location = Pair("25.346254", "55.420933")
 
-        val mockedResponse = CitiesForecastMockedUtility.getCurrentLocationForecastMockedResponse()
+        val mockedResponse = ForecastMockedDataUtility.getCurrentLocationForecastMockedResponse()
 
         Mockito.`when`(
             this.weatherApi.getForecastByLocation(location.first, location.second)
