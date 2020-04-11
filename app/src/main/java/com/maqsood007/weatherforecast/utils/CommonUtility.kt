@@ -1,5 +1,6 @@
 package com.maqsood007.weatherforecast.utils
 
+import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.data.response.currentlocation.Main
 import com.maqsood007.weatherforecast.data.response.currentlocation.Wind
 
@@ -15,7 +16,7 @@ object CommonUtility {
         MAX_TEMPERATURE
     }
 
-     fun Main.toTempString(temperatureType: TemperatureType): String {
+    fun Main.toTempString(temperatureType: TemperatureType): String {
 
         val CONVERTION_UNIT = 273.15
 
@@ -34,6 +35,9 @@ object CommonUtility {
         return String.format("%.0f", speed?.times(3.6)) + "km/h";
     }
 
+    fun String.toImageUrl(): String {
+        return "${BuildConfig.BASE_URL_ICON}${this}.png"
+    }
 
     fun String.convertToTitleCaseIteratingChars(): String? {
 

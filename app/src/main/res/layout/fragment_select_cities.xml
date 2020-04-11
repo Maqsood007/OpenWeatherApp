@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -37,7 +38,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:errorViewModel="@{citiesViewModel}" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -46,6 +48,7 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/white"
             android:progressTint="@color/white"
+            android:visibility="@{citiesViewModel.loadingVisibility, default=gone}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
-            android:background="@drawable/rounded_corner"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_corner"
             android:enabled="@{citiesViewModel.cityListAdapter.totalCitiesSelected.intValue()>2}"
             app:bindTextWithCityCounter="@{citiesViewModel.cityListAdapter.counterToShow}"
             app:layout_constraintBottom_toBottomOf="parent"

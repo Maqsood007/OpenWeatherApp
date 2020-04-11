@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.maqsood007.weatherforecast.AppConstants.SELECTED_CITY
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentSelectCitiesBinding
-import com.maqsood007.weatherforecast.extensions.formatErrorLayout
 import com.maqsood007.weatherforecast.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import javax.inject.Inject
@@ -66,36 +65,13 @@ class SelectCitiesFragment : BaseFragment() {
         citiesViewModel =
             ViewModelProviders.of(this, viewModelFactory)[CitiesViewModel::class.java]
 
-        citiesViewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
-            if (error != null) showError(error) else hideError()
-        })
-
         fragmentSelectCitiesBinding.lifecycleOwner = this
-
-        citiesViewModel.loadingVisibility.observe(viewLifecycleOwner, Observer { visibility ->
-
-            if (visibility == View.VISIBLE) {
-                // show the progress loader
-                fragmentSelectCitiesBinding.progressBar.visibility = visibility
-
-            } else {
-                // hide the progress loader
-                fragmentSelectCitiesBinding.progressBar.visibility = visibility
-            }
-
-        })
-
-        citiesViewModel.errorLayoutVisibility.observe(viewLifecycleOwner, Observer { visibility ->
-
-            fragmentSelectCitiesBinding.errorLayout.visibility = visibility
-        })
 
         fragmentSelectCitiesBinding.btnSearch.setOnClickListener {
             navigateToSearch()
         }
 
 
-        fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.formatErrorLayout()
         fragmentSelectCitiesBinding.errorLayout.tvErrorTitle.setOnClickListener(citiesViewModel.retryListener)
 
         fragmentSelectCitiesBinding.citiesViewModel = citiesViewModel
@@ -122,14 +98,6 @@ class SelectCitiesFragment : BaseFragment() {
             bundle
         )
     }
-
-
-    private fun showError(message: String) {
-    }
-
-    private fun hideError() {
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search_cities, menu)

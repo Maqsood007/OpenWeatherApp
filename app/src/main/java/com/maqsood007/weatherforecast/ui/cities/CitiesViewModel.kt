@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maqsood007.weatherforecast.WeatherApp
 import com.maqsood007.weatherforecast.data.response.cities.City
+import com.maqsood007.weatherforecast.ui.base.BaseViewModel
 import com.maqsood007.weatherforecast.ui.cities.adapter.CitiesListAdapter
 import com.maqsood007.weatherforecast.utils.CitiesUtility
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,7 +20,8 @@ import javax.inject.Inject
 /**
  * Created by Muhammad Maqsood on 06/04/2020.
  */
-class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : ViewModel() {
+class CitiesViewModel @Inject constructor(weatherApp: WeatherApp) :
+    BaseViewModel(weatherApp) {
 
     val cityListAdapter = CitiesListAdapter()
 
@@ -27,8 +29,6 @@ class CitiesViewModel @Inject constructor(private val weatherApp: WeatherApp) : 
     var citiesListToShow = mutableListOf<City?>()
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val errorLayoutVisibility: MutableLiveData<Int> = MutableLiveData()
-    val errorMessage: MutableLiveData<String> = MutableLiveData()
 
     lateinit var subscription: Disposable
 

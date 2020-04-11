@@ -3,8 +3,10 @@ package com.maqsood007.weatherforecast.ui.forcasts.cities
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.maqsood007.weatherforecast.WeatherApp
 import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.data.response.citiesforcast.CitiesForcastResponse
+import com.maqsood007.weatherforecast.ui.base.BaseViewModel
 import com.maqsood007.weatherforecast.ui.forcasts.cities.adapter.CitiesForecastListAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -14,12 +16,10 @@ import javax.inject.Inject
 /**
  * Created by Muhammad Maqsood on 06/04/2020.
  */
-class CitiesForecastViewModel @Inject constructor(private val weatherApi: WeatherApi) :
-    ViewModel() {
+class CitiesForecastViewModel @Inject constructor(private val weatherApi: WeatherApi, weatherApp: WeatherApp) :
+    BaseViewModel(weatherApp) {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val errorLayoutVisibility: MutableLiveData<Int> = MutableLiveData()
-    val errorMessage: MutableLiveData<String> = MutableLiveData()
 
 
     val citiesForecastData = MutableLiveData<CitiesForcastResponse>()

@@ -14,11 +14,16 @@ import com.maqsood007.weatherforecast.R
  */
 
 
-fun TextView.formatErrorLayout(){
+fun TextView.formatErrorLayout(msg: String?) {
 
+    var errorMsg: String?
+
+    if (msg == null)
+        errorMsg = resources.getString(R.string.something_went_wrong)
+    else errorMsg = msg
 
     val errorMessage =
-        SpannableString(resources.getString(R.string.something_went_wrong))
+        SpannableString(errorMsg)
 
     val clickHere =
         SpannableString(resources.getString(R.string.click_here))
@@ -36,7 +41,6 @@ fun TextView.formatErrorLayout(){
     ssb.append(errorMessage)
     ssb.append(" ")
     ssb.append(clickHere)
-
 
     text = ssb
 

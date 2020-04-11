@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.R
 import com.maqsood007.weatherforecast.databinding.FragmentForcastByLocationBinding
-import com.maqsood007.weatherforecast.extensions.formatErrorLayout
 import com.maqsood007.weatherforecast.ui.MainActivity
 import com.maqsood007.weatherforecast.ui.base.BaseFragment
 import com.maqsood007.weatherforecast.utils.CommonUtility
@@ -74,76 +73,15 @@ class ForcastByLocationFragment : BaseFragment() {
         weatherForecastViewModel =
             ViewModelProviders.of(this, viewModelFactory)[WeatherForecastViewModel::class.java]
 
-        weatherForecastViewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
-            if (error != null) showError(error) else hideError()
-        })
-
         fragmentForcastByLocationBinding.lifecycleOwner = this
 
-        weatherForecastViewModel.loadingVisibility.observe(
-            viewLifecycleOwner,
-            Observer { visibility ->
-
-                if (visibility == View.VISIBLE) {
-                    // show the progress loader
-                    fragmentForcastByLocationBinding.progressBar.visibility = visibility
-
-                } else {
-                    // hide the progress loader
-                    fragmentForcastByLocationBinding.progressBar.visibility = visibility
-                }
-
-            })
-
-
-        weatherForecastViewModel.locationForecastData.observe(
+        weatherForecastViewModel.areaSearched.observe(
             viewLifecycleOwner,
             Observer {
-
-                val todayForecast = it?.list?.get(0)
-
-                todayForecast.let {
-
-                    val temprature =
-                        it?.main?.toTempString(CommonUtility.TemperatureType.TEMPERATURE)
-                    val winds = it?.wind?.toWindSpeed()
-                    val description = it?.weather?.get(0)?.description
-                    val tempratureRange =
-                        "".plus(it?.main?.toTempString(CommonUtility.TemperatureType.MIN_TEMPERATURE))
-                            .plus("~")
-                            .plus(it?.main?.toTempString(CommonUtility.TemperatureType.MAX_TEMPERATURE))
-
-                    val icon =
-                        "${BuildConfig.BASE_URL_ICON}${todayForecast?.weather?.get(0)?.icon}.png"
-                    loadImage(fragmentForcastByLocationBinding.imgDescription, icon)
-
-                    fragmentForcastByLocationBinding.tvAppName.visibility = View.GONE
-
-                    fragmentForcastByLocationBinding.tvTemprature.text = temprature
-                    fragmentForcastByLocationBinding.imgWinds.visibility = View.VISIBLE
-                    fragmentForcastByLocationBinding.tvWinds.text = winds
-                    fragmentForcastByLocationBinding.imgDescription.visibility = View.VISIBLE
-                    fragmentForcastByLocationBinding.tvDescription.text =
-                        description?.convertToTitleCaseIteratingChars()
-                    fragmentForcastByLocationBinding.imgTempRange.visibility = View.VISIBLE
-                    fragmentForcastByLocationBinding.tvTemRange.text = tempratureRange
-
-                    fragmentForcastByLocationBinding.tvtodayDate.setText(DateTimeUtility.getTodayFormattedDate())
-                    fragmentForcastByLocationBinding.tvtodayDate.visibility = View.VISIBLE
-
-
-                }
-
-                currentCityName = it?.city?.name!!
+                // Set title for the area searched.
+                currentCityName = it
                 setToolBarTitle()
-            })
 
-
-        weatherForecastViewModel.errorLayoutVisibility.observe(
-            viewLifecycleOwner,
-            Observer { visibility ->
-
-                fragmentForcastByLocationBinding.errorLayout.visibility = visibility
             })
 
 
@@ -157,8 +95,6 @@ class ForcastByLocationFragment : BaseFragment() {
 
         })
 
-
-        fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.formatErrorLayout()
         fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.setOnClickListener(
             weatherForecastViewModel.retryListener
         )
@@ -166,12 +102,6 @@ class ForcastByLocationFragment : BaseFragment() {
         fragmentForcastByLocationBinding.forecastViewModel = weatherForecastViewModel
 
         return fragmentForcastByLocationBinding.root
-    }
-
-    private fun showError(message: String) {
-    }
-
-    private fun hideError() {
     }
 
 
