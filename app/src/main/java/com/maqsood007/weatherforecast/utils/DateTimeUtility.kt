@@ -13,7 +13,7 @@ object DateTimeUtility {
 
 
     val DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss"
-    val DATE_WITH_DAY_NAME = "EEE, dd YYYY"
+    val DATE_WITH_DAY_NAME = "EEE, dd yyyy"
     val TIME_AM_PM_FORMATTER = "hh:mm"
     val DATE_ONLY_FORMATTER = "yyyy-MM-dd"
     val DAY_NAME_ONLY_FORMATTER = "EEEE"
