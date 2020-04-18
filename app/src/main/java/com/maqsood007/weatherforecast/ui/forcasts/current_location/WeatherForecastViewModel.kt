@@ -1,5 +1,6 @@
 package com.maqsood007.weatherforecast.ui.forcasts.current_location
 
+import android.os.AsyncTask
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +10,7 @@ import com.maqsood007.weatherforecast.WeatherApp
 import com.maqsood007.weatherforecast.data.WeatherApi
 import com.maqsood007.weatherforecast.data.response.currentlocation.CurrentLocationForcastResponse
 import com.maqsood007.weatherforecast.data.response.currentlocation.ListItem
+import com.maqsood007.weatherforecast.di.module.ScheduleProvider
 import com.maqsood007.weatherforecast.ui.base.BaseViewModel
 import com.maqsood007.weatherforecast.ui.forcasts.current_location.adapter.LocationForecastListAdapter
 import com.maqsood007.weatherforecast.utils.CommonUtility
@@ -25,7 +27,10 @@ import javax.inject.Inject
 /**
  * Created by Muhammad Maqsood on 06/04/2020.
  */
-class WeatherForecastViewModel @Inject constructor(private val weatherApi: WeatherApi, weatherApp: WeatherApp) :
+class WeatherForecastViewModel @Inject constructor(
+    private val weatherApi: WeatherApi, private var schedulerProvider: ScheduleProvider,
+    weatherApp: WeatherApp
+) :
     BaseViewModel(weatherApp) {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
@@ -73,11 +78,14 @@ class WeatherForecastViewModel @Inject constructor(private val weatherApi: Weath
 
     public fun getForecastByLocation() {
 
+        // Schedulers.from(AsyncTask.THREAD_POOL_EXECUTOR)
+
+
         subscription =
             weatherApi.getForecastByLocation(
                 locationCoordinates.first.toString(),
                 locationCoordinates.second.toString()
-            ).subscribeOn(Schedulers.io())
+            ).subscribeOn(schedulerProvider.thread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onForecastFetchStart() }
                 .doOnTerminate { onForecastFetchEnd() }

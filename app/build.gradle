@@ -9,11 +9,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.maqsood007.weatherforecast"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         flavorDimensions "default"
@@ -134,24 +134,38 @@ dependencies {
 
     // Unit test dependencies
 
-    // Required -- JUnit 4 framework
-    testImplementation 'junit:junit:4.12'
+
     // Optional -- Robolectric environment
     testImplementation 'androidx.test:core:' + rootProject.coreVersion
-    // Optional -- Mockito framework
-    testImplementation 'org.mockito:mockito-core:2.23.0'
 
-    //Unit instrumentation test
-    androidTestImplementation 'androidx.test:runner:1.2.0'
+    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:2.24.5'
+    // required if you want to use Mockito for Android tests
+    androidTestImplementation 'org.mockito:mockito-android:2.24.5'
+
+
     androidTestImplementation 'androidx.test:rules:1.2.0'
-
+    androidTestImplementation 'net.rafaeltoledo.okir:library:0.0.1@aar'
 
     // UI test dependencies
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // Required -- JUnit 4 framework
+    testImplementation 'junit:junit:4.12'
+    //Unit instrumentation test
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion;
+
     androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion;
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:' + rootProject.espressoVersion;
 
+    // ...
+    debugImplementation ('androidx.fragment:fragment-testing:' + rootProject.fragment_version){
+        exclude group: 'androidx.test', module : 'core'
+    }
+
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.16'
+    kaptTest 'com.google.dagger:dagger-compiler:2.16'
 
     // Mockito Testing
 //    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'

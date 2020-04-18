@@ -5,6 +5,7 @@ package com.maqsood007.weatherforecast.di.module
  */
 
 
+import androidx.annotation.VisibleForTesting
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.maqsood007.weatherforecast.BuildConfig
 import com.maqsood007.weatherforecast.data.WeatherApi
@@ -24,18 +25,9 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    @Provides
     @Singleton
-    fun schedules(): ScheduleProvider = object : ScheduleProvider {
-        override fun main(): Scheduler {
-            return AndroidSchedulers.mainThread()
-        }
-
-        override fun thread(): Scheduler {
-            return Schedulers.io()
-        }
-
-    }
+    @Provides
+    fun converterFactory(): Converter.Factory = GsonConverterFactory.create()
 
     @Singleton
     @Provides
@@ -47,10 +39,6 @@ class NetworkModule {
             .writeTimeout(10, TimeUnit.SECONDS)
             .build()
     }
-
-    @Singleton
-    @Provides
-    fun converterFactory(): Converter.Factory = GsonConverterFactory.create()
 
     @Singleton
     @Provides

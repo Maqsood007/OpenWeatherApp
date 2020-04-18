@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -41,7 +42,6 @@ class ForcastByLocationFragment : BaseFragment() {
 
 
     private var currentCityName = ""
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,16 +84,17 @@ class ForcastByLocationFragment : BaseFragment() {
 
             })
 
+        if (requireContext() is MainActivity) {
+            (context as MainActivity).currentLocation.observe(viewLifecycleOwner, Observer {
 
-        (context as MainActivity).currentLocation.observe(viewLifecycleOwner, Observer {
+                if (weatherForecastViewModel.locationForecastData.value == null && weatherForecastViewModel.locationCoordinates.first == 0.0) {
 
-            if (weatherForecastViewModel.locationForecastData.value == null && weatherForecastViewModel.locationCoordinates.first == 0.0) {
+                    weatherForecastViewModel.locationCoordinates = it
+                    weatherForecastViewModel.getForecastByLocation()
+                }
 
-                weatherForecastViewModel.locationCoordinates  = it
-                weatherForecastViewModel.getForecastByLocation()
-            }
-
-        })
+            })
+        }
 
         fragmentForcastByLocationBinding.errorLayout.tvErrorTitle.setOnClickListener(
             weatherForecastViewModel.retryListener
@@ -123,12 +124,16 @@ class ForcastByLocationFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        findNavController().addOnDestinationChangedListener(listener)
+        if (requireContext() is MainActivity) {
+            findNavController().addOnDestinationChangedListener(listener)
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        findNavController().removeOnDestinationChangedListener(listener)
+        if (requireContext() is MainActivity) {
+            findNavController().removeOnDestinationChangedListener(listener)
+        }
     }
 
 
@@ -141,7 +146,7 @@ class ForcastByLocationFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_search -> {
-                findNavController().navigate(R.id.action_forcastByLocationFragment_to_selectCitiesFragment)
+                view?.findNavController()?.navigate(R.id.action_forcastByLocationFragment_to_selectCitiesFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvTemprature"
+            android:id="@+id/tvTodayMainTemprature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -72,7 +72,7 @@
             android:textColor="@color/white"
             android:text="@{forecastViewModel.tvWinds}"
             android:fontFamily="@font/roboto_medium"
-            app:layout_constraintBottom_toBottomOf="@+id/tvTemprature"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTodayMainTemprature"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imgWinds"
@@ -112,7 +112,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.122"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTemprature"
+            app:layout_constraintTop_toBottomOf="@+id/tvTodayMainTemprature"
             app:layout_constraintVertical_bias="0.0"
             tools:text="Monday 23, 2020" />
 
@@ -144,6 +144,7 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/white"
             android:minWidth="@dimen/_50sdp"
+            android:indeterminateOnly="false"
             android:progressTint="@color/white"
             android:visibility="@{forecastViewModel.loadingVisibility, default=visible}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +171,7 @@
             app:imageUrl="@{forecastViewModel.imgDescription}"
             android:visibility="@{forecastViewModel.imgDescriptionVisibility, default=invisible}"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/tvTemprature"
+            app:layout_constraintTop_toTopOf="@+id/tvTodayMainTemprature"
             app:srcCompat="@drawable/ic_winds" />
 
         <ImageView

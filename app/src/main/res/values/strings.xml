@@ -15,7 +15,7 @@
 
     <string name="text_detail_forecast_by_location">Here you can find more detail about the your current location city forecast. We have organize next 5 days forecast for you.</string>
     <string name="text_detail_forecast_by_cities">Here you can search forecast for multiple cities from a provided list.</string>
-    <string name="search_hint">Type name…</string>
+    <string name="search_hint">Search by cities</string>
     <string name="select_cities">Select Cities</string>
     <string name="search_forecast">SEARCH FORECAST</string>
     <string name="validation_msg">Min: 3, Max: 7</string>

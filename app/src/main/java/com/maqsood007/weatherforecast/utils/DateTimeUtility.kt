@@ -22,9 +22,10 @@ object DateTimeUtility {
     fun getDateOnly(inputDate: String, parserFormatte: String): String {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val localDateTime = LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(parserFormatte))
+            val localDateTime =
+                LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(parserFormatte))
             return localDateTime.format(DateTimeFormatter.ofPattern(DATE_ONLY_FORMATTER))
-        }else{
+        } else {
             val parser = SimpleDateFormat(parserFormatte, Locale.getDefault())
             val outputFormatter = SimpleDateFormat(DATE_ONLY_FORMATTER, Locale.getDefault())
             val date = parser.parse(inputDate)
@@ -37,19 +38,20 @@ object DateTimeUtility {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val localDateTime = LocalDateTime.now()
             return localDateTime.format(DateTimeFormatter.ofPattern(DATE_WITH_DAY_NAME))
-        }else{
+        } else {
             val today = Date()
             val outputFormatter = SimpleDateFormat(DATE_WITH_DAY_NAME, Locale.getDefault())
             return outputFormatter.format(today)
         }
     }
 
-    fun getDayName(inputDate: String, parserFormatte: String) : String{
+    fun getDayName(inputDate: String, parserFormatte: String): String {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val localDateTime = LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(parserFormatte))
+            val localDateTime =
+                LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(parserFormatte))
             return localDateTime.format(DateTimeFormatter.ofPattern(DAY_NAME_ONLY_FORMATTER))
-        }else{
+        } else {
             val parser = SimpleDateFormat(parserFormatte, Locale.getDefault())
             val outputFormatter = SimpleDateFormat(DAY_NAME_ONLY_FORMATTER, Locale.getDefault())
             val date = parser.parse(inputDate)
@@ -57,13 +59,21 @@ object DateTimeUtility {
         }
     }
 
+    fun Date.toSpecificFormat(parserFormat: String): String {
 
-    fun getTime(inputDate: String, parserFormatte: String) : String{
+        val outputFormatter = SimpleDateFormat(parserFormat, Locale.getDefault())
+        return outputFormatter.format(this)
+
+    }
+
+
+    fun getTime(inputDate: String, parserFormatte: String): String {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val localDateTime = LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(parserFormatte))
+            val localDateTime =
+                LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(parserFormatte))
             return localDateTime.format(DateTimeFormatter.ofPattern(TIME_AM_PM_FORMATTER))
-        }else{
+        } else {
             val parser = SimpleDateFormat(parserFormatte, Locale.getDefault())
             val outputFormatter = SimpleDateFormat(TIME_AM_PM_FORMATTER, Locale.getDefault())
             val date = parser.parse(inputDate)

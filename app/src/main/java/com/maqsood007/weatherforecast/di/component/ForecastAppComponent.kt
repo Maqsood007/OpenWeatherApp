@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [AndroidInjectionModule::class, AppModule::class, FragmentModule::class, ViewModelModule::class, NetworkModule::class, ApiModule::class, ActivityModule::class])
+@Component(modules = [AndroidInjectionModule::class, AppModule::class, FragmentModule::class, ViewModelModule::class, ThreadSchedulerModule::class, NetworkModule::class, ApiModule::class, ActivityModule::class])
 interface ForecastAppComponent : AndroidInjector<WeatherApp> {
 
     @Component.Builder
